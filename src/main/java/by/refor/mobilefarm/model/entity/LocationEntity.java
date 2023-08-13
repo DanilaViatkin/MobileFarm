@@ -1,0 +1,46 @@
+package by.refor.mobilefarm.model.entity;
+
+import jakarta.persistence.*;
+import lombok.Data;
+
+@Entity
+@Table(name = "locations")
+@Data
+public class LocationEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long locationId;
+
+    @Column(name = "index", length = 6, nullable = false)
+    private String index;
+
+    @Column(name = "region", nullable = false)
+    private String region;
+
+    @Column(name = "district", nullable = false)
+    private String district;
+
+    @Column(name = "name", nullable = false)
+    private String name;
+
+    @Column(name = "coordinates", nullable = false)
+    private String coordinates;
+
+    @Column(name = "street_name", nullable = false)
+    private String streetName;
+
+    @Column(name = "house_number", nullable = false)
+    private String houseNumber;
+
+    @Column(name = "corpus_number")
+    private String corpusNumber;
+
+    @Column(name = "phone_number", nullable = false)
+    private String phoneNumber;
+
+    @Column(name = "fax_number")
+    private String faxNumber;
+
+    @Column(name = "email", nullable = false)
+    private String email;
+}

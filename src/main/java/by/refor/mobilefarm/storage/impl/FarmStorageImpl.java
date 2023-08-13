@@ -1,0 +1,25 @@
+package by.refor.mobilefarm.storage.impl;
+
+import by.refor.mobilefarm.mapper.FarmModelMapper;
+import by.refor.mobilefarm.model.bo.Farm;
+import by.refor.mobilefarm.repo.FarmRepository;
+import by.refor.mobilefarm.storage.FarmStorage;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
+public class FarmStorageImpl implements FarmStorage {
+
+    private final FarmRepository farmRepository;
+    private final FarmModelMapper farmModelMapper;
+
+    @Autowired
+    public FarmStorageImpl(FarmRepository farmRepository,
+                           FarmModelMapper farmModelMapper) {
+        this.farmRepository = farmRepository;
+        this.farmModelMapper = farmModelMapper;
+    }
+    public Farm getFarmByGLN(String gln) {
+        return farmModelMapper.map(farmRepository.findByGln(gln), Farm.class);
+    }
+}
