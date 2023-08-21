@@ -1,16 +1,54 @@
 package by.refor.mobilefarm.mapper;
 
 import by.refor.mobilefarm.model.bo.AnimalPassport;
+import by.refor.mobilefarm.model.bo.Farm;
+import by.refor.mobilefarm.model.bo.GeneticGroup;
 import by.refor.mobilefarm.model.entity.AnimalPassportEntity;
+import by.refor.mobilefarm.model.entity.FarmEntity;
+import by.refor.mobilefarm.model.entity.GeneticGroupEntity;
+import org.modelmapper.Conditions;
+import org.modelmapper.Converter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.Objects;
 
 @Component
 public class AnimalPassportModelMapper extends MobileFarmModelMapper{
+    @Autowired
+    private GeneticGroupModelMapper geneticGroupModelMapper;
+    @Autowired
+    private FarmModelMapper farmModelMapper;
+
+    private Converter<GeneticGroupEntity, GeneticGroup> geneticGroupEntityGeneticGroupConverter(){
+        return context -> {
+            GeneticGroup gg = geneticGroupModelMapper.map(context.getSource(), GeneticGroup.class);
+            return gg;
+        };
+    }
+
+    private Converter<FarmEntity, Farm> farmEntityFarmConverter(){
+        return context -> farmModelMapper.map(context.getSource(), Farm.class);
+    }
+
+    private Converter<AnimalPassportEntity, String> motherExternalIdConverter(){
+        return context -> Objects.nonNull(context.getSource().getMother()) ? context.getSource().getMother().getExternalId() : null;
+    }
+    private Converter<AnimalPassportEntity, String> motherNicknameConverter(){
+        return context -> Objects.nonNull(context.getSource().getMother()) ? context.getSource().getMother().getNickname() : null;
+    }
+    private Converter<AnimalPassportEntity, String> fatherExternalIdConverter(){
+        return context -> Objects.nonNull(context.getSource().getFather()) ? context.getSource().getFather().getExternalId() : null;
+    }
+    private Converter<AnimalPassportEntity, String> fatherNicknameConverter(){
+        return context -> Objects.nonNull(context.getSource().getFather()) ? context.getSource().getFather().getNickname() : null;
+    }
+
+
     public AnimalPassportModelMapper(){
         super.createTypeMap(AnimalPassportEntity.class, AnimalPassport.class).addMappings(mapping -> {
            mapping.map(AnimalPassportEntity::getCreatedDate, AnimalPassport::setCreatedDate);
-           mapping.map(AnimalPassportEntity::getId, AnimalPassport::setId);
-           mapping.map(AnimalPassportEntity::getType, AnimalPassport::setType);
+           mapping.map(AnimalPassportEntity::getExternalId, AnimalPassport::setExternalId);
            mapping.map(AnimalPassportEntity::getNickname, AnimalPassport::setNickname);
            mapping.map(AnimalPassportEntity::getSex, AnimalPassport::setSex);
            mapping.map(AnimalPassportEntity::getBreed, AnimalPassport::setBreed);
@@ -27,6 +65,39 @@ public class AnimalPassportModelMapper extends MobileFarmModelMapper{
            mapping.map(AnimalPassportEntity::getDryPeriodStartDate, AnimalPassport::setLactationStartDate);
            mapping.map(AnimalPassportEntity::getWeightGrowth, AnimalPassport::setWeightGrowth);
            mapping.map(AnimalPassportEntity::getBirthDate, AnimalPassport::setBirthDate);
+           mapping.when(Conditions.isNotNull()).using(motherExternalIdConverter()).map(AnimalPassportEntity::getMother, AnimalPassport::setMotherExternalId);
+           mapping.when(Conditions.isNotNull()).using(fatherExternalIdConverter()).map(AnimalPassportEntity::getFather, AnimalPassport::setFatherExternalId);
+           mapping.when(Conditions.isNotNull()).using(motherNicknameConverter()).map(AnimalPassportEntity::getMother, AnimalPassport::setMotherNickname);
+           mapping.when(Conditions.isNotNull()).using(fatherNicknameConverter()).map(AnimalPassportEntity::getFather, AnimalPassport::setFatherNickname);
+           mapping.when(Conditions.isNotNull()).using(farmEntityFarmConverter()).map(AnimalPassportEntity::getFarm, AnimalPassport::setFarm);
+           mapping.when(Conditions.isNotNull()).using(geneticGroupEntityGeneticGroupConverter()).map(AnimalPassportEntity::getGeneticGroup, AnimalPassport::setGeneticGroup);
+        });
+
+        super.createTypeMap(AnimalPassportEntity.class, AnimalPassportEntity.class).addMappings(mapping -> {
+           mapping.when(Conditions.isNotNull()).map(AnimalPassportEntity::getCreatedDate, AnimalPassportEntity::setCreatedDate);
+           mapping.when(Conditions.isNotNull()).map(AnimalPassportEntity::getExternalId, AnimalPassportEntity::setExternalId);
+           mapping.when(Conditions.isNotNull()).map(AnimalPassportEntity::getNickname, AnimalPassportEntity::setNickname);
+           mapping.when(Conditions.isNotNull()).map(AnimalPassportEntity::getSex, AnimalPassportEntity::setSex);
+           mapping.when(Conditions.isNotNull()).map(AnimalPassportEntity::getBreed, AnimalPassportEntity::setBreed);
+           mapping.when(Conditions.isNotNull()).map(AnimalPassportEntity::getDeathDate, AnimalPassportEntity::setDeathDate);
+           mapping.when(Conditions.isNotNull()).map(AnimalPassportEntity::getBreedingAnimal, AnimalPassportEntity::setBreedingAnimal);
+           mapping.when(Conditions.isNotNull()).map(AnimalPassportEntity::getWeight, AnimalPassportEntity::setWeight);
+           mapping.when(Conditions.isNotNull()).map(AnimalPassportEntity::getProductionType, AnimalPassportEntity::setProductionType);
+           mapping.when(Conditions.isNotNull()).map(AnimalPassportEntity::getAverageProductivity, AnimalPassportEntity::setAverageProductivity);
+           mapping.when(Conditions.isNotNull()).map(AnimalPassportEntity::getGeneticProductivity, AnimalPassportEntity::setGeneticProductivity);
+           mapping.when(Conditions.isNotNull()).map(AnimalPassportEntity::getTreatmentStartDate, AnimalPassportEntity::setTreatmentStartDate);
+           mapping.when(Conditions.isNotNull()).map(AnimalPassportEntity::getTreatmentEndDate, AnimalPassportEntity::setTreatmentEndDate);
+           mapping.when(Conditions.isNotNull()).map(AnimalPassportEntity::getInseminationDate, AnimalPassportEntity::setInseminationDate);
+           mapping.when(Conditions.isNotNull()).map(AnimalPassportEntity::getLactationStartDate, AnimalPassportEntity::setLactationStartDate);
+           mapping.when(Conditions.isNotNull()).map(AnimalPassportEntity::getDryPeriodStartDate, AnimalPassportEntity::setLactationStartDate);
+           mapping.when(Conditions.isNotNull()).map(AnimalPassportEntity::getWeightGrowth, AnimalPassportEntity::setWeightGrowth);
+           mapping.when(Conditions.isNotNull()).map(AnimalPassportEntity::getBirthDate, AnimalPassportEntity::setBirthDate);
+           mapping.skip(AnimalPassportEntity::setMother);
+           mapping.skip(AnimalPassportEntity::setFather);
+           mapping.skip(AnimalPassportEntity::setFarm);
+           mapping.skip(AnimalPassportEntity::setOriginalOwnerFarm);
+           mapping.skip(AnimalPassportEntity::setGeneticGroup);
+           mapping.skip(AnimalPassportEntity::setAnimalPassportId);
         });
     }
 }

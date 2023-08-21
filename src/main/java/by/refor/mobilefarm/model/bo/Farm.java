@@ -1,9 +1,11 @@
 package by.refor.mobilefarm.model.bo;
 
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -11,6 +13,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Accessors(chain = true)
 public class Farm {
     private Long farmId;
     private String gln;
@@ -19,9 +22,7 @@ public class Farm {
     private OffsetDateTime formingDate;
     private Owner owner;
     private Location location;
-    private List<AnimalPassport> animalPassports;
-    @JsonIgnore
-    private Organization organization;
+    private String organizationName;
     private Long animalAmount;
 
     @Override
@@ -33,8 +34,7 @@ public class Farm {
                 "formingDate = " + formingDate + ", " +
                 "owner = " + owner.getFirstName() + " " + owner.getLastName() + ", " +
                 "location = " + location.getCoordinates() + ", " +
-                "animalPassports = " + animalPassports.size() + ", " +
-                "organization = " + organization.getName() + ", " +
+                "organizationName = " + organizationName + ", " +
                 "animalAmount = " + animalAmount + ", ";
     }
 }

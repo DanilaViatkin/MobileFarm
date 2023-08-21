@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class OwnerEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ownerId;
 
     @Column(name = "first_name", nullable = false)

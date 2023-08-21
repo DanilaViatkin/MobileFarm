@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 public class FarmEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long farmId;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -28,7 +28,7 @@ public class FarmEntity {
 
     @OneToMany(mappedBy = "farm")
     private List<AnimalPassportEntity> animalPassports;
-
+    //TODO: отличается ли от gln организации
     @Column(name = "gln", nullable = false)
     private String gln;
 

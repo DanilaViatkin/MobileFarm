@@ -22,4 +22,9 @@ public class FarmStorageImpl implements FarmStorage {
     public Farm getFarmByGLN(String gln) {
         return farmModelMapper.map(farmRepository.findByGln(gln), Farm.class);
     }
+
+    @Override
+    public Farm getFarmById(Long id) {
+        return farmModelMapper.map(farmRepository.findById(id), Farm.class);
+    }
 }
