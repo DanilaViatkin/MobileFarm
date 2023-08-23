@@ -11,7 +11,7 @@ public class LocationModelMapper extends MobileFarmModelMapper{
             mapping.map(LocationEntity::getIndex, Location::setIndex);
             mapping.map(LocationEntity::getRegion, Location::setRegion);
             mapping.map(LocationEntity::getDistrict, Location::setDistrict);
-            mapping.map(LocationEntity::getName, Location::setLocationName);
+            mapping.map(LocationEntity::getLocationName, Location::setLocationName);
             mapping.map(LocationEntity::getCoordinates, Location::setCoordinates);
             mapping.map(LocationEntity::getStreetName, Location::setStreetName);
             mapping.map(LocationEntity::getHouseNumber, Location::setHouseNumber);

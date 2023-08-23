@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 public class OrganizationEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long organizationId;
 
     @ManyToOne(fetch = FetchType.EAGER)

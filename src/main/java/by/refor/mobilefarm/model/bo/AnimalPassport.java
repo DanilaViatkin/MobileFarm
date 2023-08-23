@@ -13,13 +13,13 @@ import java.time.OffsetDateTime;
 public class AnimalPassport {
     private Long animalPassportId;
     private OffsetDateTime createdDate;
-    private String id;
+    private String externalId;
     private String type;
     private String nickname;
     private String sex;
     private String breed;
     private OffsetDateTime deathDate;
-    private String breedingAnimal;
+    private Boolean breedingAnimal;
     private Double weight;
     private String productionType;
     private Double averageProductivity;
@@ -32,14 +32,19 @@ public class AnimalPassport {
     private Double weightGrowth;
     private OffsetDateTime birthDate;
     private OffsetDateTime age;
-    @JsonIgnore
+    private String motherExternalId;
+    private String motherNickname;
+    private String fatherExternalId;
+    private String fatherNickname;
     private Farm farm;
+    private Farm originalOwnerFarm;
+    private GeneticGroup geneticGroup;
 
     @Override
     public String toString(){
         return  "animalPassportId = " + animalPassportId + ", " +
                 "createdDate = " + createdDate + ", " +
-                "id = " + id + ", " +
+                "externalId = " + externalId + ", " +
                 "type = " + type + ", " +
                 "nickname = " + nickname + ", " +
                 "sex = " + sex + ", " +
@@ -58,7 +63,12 @@ public class AnimalPassport {
                 "weightGrowth = " + weightGrowth + ", " +
                 "birthDate = " + birthDate + ", " +
                 "age = " + age + ", " +
-                "farm = " + farm.getName() + ", ";
+                "geneticGroup = " + geneticGroup.getType() + ", " +
+                "motherId = " + motherExternalId + ", " +
+                "motherNickName = " + motherNickname + ", " +
+                "fatherId = " + fatherExternalId + ", " +
+                "fatherName = " + fatherNickname + ", " +
+                "farm = " + farm.getName();
 
     }
 }

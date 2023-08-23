@@ -2,6 +2,7 @@ package by.refor.mobilefarm.model.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
@@ -9,9 +10,10 @@ import java.time.OffsetDateTime;
 @Entity
 @Table(name = "animal_passports")
 @Data
+@Accessors(chain = true)
 public class AnimalPassportEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long animalPassportId;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -30,14 +32,15 @@ public class AnimalPassportEntity {
     @JoinColumn(name = "mother_id")
     private AnimalPassportEntity mother;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "genetic_group_id")
+    private GeneticGroupEntity geneticGroup;
+
     @Column(name = "created_date", nullable = false)
     private OffsetDateTime createdDate;
 
-    @Column(name = "id")
-    private String id;
-
-    @Column(name = "type")
-    private String type;
+    @Column(name = "external_id", unique = true)
+    private String externalId;
 
     @Column(name = "nickname")
     private String nickname;
@@ -52,7 +55,7 @@ public class AnimalPassportEntity {
     private OffsetDateTime deathDate;
 
     @Column(name = "breeding_animal")
-    private String breedingAnimal;
+    private Boolean breedingAnimal;
 
     @Column(name = "weight")
     private BigDecimal weight;
@@ -86,4 +89,32 @@ public class AnimalPassportEntity {
 
     @Column(name = "weight_growth")
     private BigDecimal weightGrowth;
+
+    @Override
+    public String toString(){
+        return "animalPassportId = " + animalPassportId + ", " +
+                "farm = " + farm.getName() + ", " +
+                "originalOwnerFarm = " + originalOwnerFarm.getName() + ", " +
+                "father = " + father.getNickname() + ", " +
+                "mother = " + mother.getNickname() + ", " +
+                "geneticGroup = " + geneticGroup.getType() + ", " +
+                "createdDate = " + createdDate + ", " +
+                "externalId = " + externalId + ", " +
+                "nickname = " + nickname + ", " +
+                "sex = " + sex + ", " +
+                "breed = " + breed + ", " +
+                "deathDate = " + deathDate + ", " +
+                "breedingAnimal = " + breedingAnimal + ", " +
+                "weight = " + weight + ", " +
+                "productionType = " + productionType + ", " +
+                "averageProductivity = " + averageProductivity + ", " +
+                "geneticProductivity = " + geneticProductivity + ", " +
+                "treatmentStartDate = " + treatmentStartDate + ", " +
+                "treatmentEndDate = " + treatmentEndDate + ", " +
+                "inseminationDate = " + inseminationDate + ", " +
+                "lactationStartDate = " + lactationStartDate + ", " +
+                "dryPeriodStartDate = " + dryPeriodStartDate + ", " +
+                "birthDate = " + birthDate + ", " +
+                "weightGrowth = " + weightGrowth;
+    }
 }

@@ -44,6 +44,8 @@ public class Organization {
                 "paymentAccount = " + paymentAccount + ", " +
                 "owner = " + owner.getFirstName() + " " + owner.getLastName() + ", " +
                 "location = " + location.getCoordinates() + ", " +
-                "farms = " + farms.size() + ", ";
+                "farms = " + farms.size();
     }
+
+
 }

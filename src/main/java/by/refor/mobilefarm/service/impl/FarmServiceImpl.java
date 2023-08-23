@@ -6,6 +6,8 @@ import by.refor.mobilefarm.storage.FarmStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class FarmServiceImpl implements FarmService {
 
@@ -18,5 +20,10 @@ public class FarmServiceImpl implements FarmService {
     @Override
     public Farm getFarmByGLN(String gln) {
         return farmStorage.getFarmByGLN(gln);
+    }
+
+    @Override
+    public List<Farm> getFarmsByOrganizationId(Long organizationId) {
+        return farmStorage.getFarmsByOrganizationId(organizationId);
     }
 }
