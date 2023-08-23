@@ -7,6 +7,7 @@ import java.util.List;
 public interface AnimalPassportStorage {
     AnimalPassport getAnimalPassportByExternalId(String externalId);
     List<AnimalPassport> getAnimalPassportsByFarmId(Long farmId);
+    List<AnimalPassport> getAnimalPassportsByOrganizationId(Long farmId);
     AnimalPassport createAnimalPassport(AnimalPassport animalPassport, Long farmId, Long farmOriginalOwnerId, Long fatherId, Long motherId, Long geneticGroupId);
     AnimalPassport updateAnimalPassportByExternalId(AnimalPassport animalPassport, String externalId,Long farmId, Long farmOriginalOwnerId, Long geneticGroupId);
 }

@@ -28,6 +28,12 @@ public class AnimalPassportController {
         return animalPassportService.getAnimalPassportsByFarmId(farmId);
     }
 
+
+    @GetMapping("/organization_id/{organizationId}")
+    public List<AnimalPassport> getAnimalPassportsByOrganizationId(@PathVariable Long organizationId){
+        return animalPassportService.getAnimalPassportsByOrganizationId(organizationId);
+    }
+
     @PostMapping
     public AnimalPassport createAnimalPassport(@RequestBody AnimalPassport animalPassport,
                                                @RequestParam("farm_id") Long farmId,

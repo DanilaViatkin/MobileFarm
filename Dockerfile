@@ -1,6 +1,5 @@
-FROM maven:3.8.3-openjdk-17 as build
-COPY src /home/MobileFarm/src
-COPY pom.xml /home/MobileFarm
-RUN -mvn -f /home/MobileFarm/pom.xml clean package
+FROM openjdk:17-oracle
+VOLUME /MobileFarm
+ADD target/MobileFarm-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","/home/MobileFarm/target/MobileFarm-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar","/app.jar"]

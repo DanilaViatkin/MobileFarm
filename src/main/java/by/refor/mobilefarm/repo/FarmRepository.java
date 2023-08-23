@@ -4,7 +4,11 @@ import by.refor.mobilefarm.model.entity.FarmEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface FarmRepository extends JpaRepository<FarmEntity, Long> {
     FarmEntity findByGln(String gln);
+
+    List<FarmEntity> findByOrganization_OrganizationId(Long organizationId);
 }

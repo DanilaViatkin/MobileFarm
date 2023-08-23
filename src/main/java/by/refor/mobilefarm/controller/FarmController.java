@@ -3,10 +3,9 @@ package by.refor.mobilefarm.controller;
 import by.refor.mobilefarm.model.bo.Farm;
 import by.refor.mobilefarm.service.FarmService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/farms")
@@ -21,5 +20,10 @@ public class FarmController {
     @GetMapping("/gln/{gln}")
     public Farm getFarmByGLN(@PathVariable String gln){
         return farmService.getFarmByGLN(gln);
+    }
+
+    @GetMapping
+    public List<Farm> getFarmsByOrganizationId(@RequestParam("organization_id") Long organizationId){
+        return farmService.getFarmsByOrganizationId(organizationId);
     }
 }

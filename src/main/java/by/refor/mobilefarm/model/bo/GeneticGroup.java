@@ -23,7 +23,7 @@ public class GeneticGroup {
     private Integer age;
     private Nutrients nutrients;
     private List<Ration> rations;
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     public Nutrients getNutrients(){
         return nutrients;
     }

@@ -1,0 +1,9 @@
+package by.refor.mobilefarm.storage;
+
+import by.refor.mobilefarm.model.bo.Feed;
+
+import java.util.List;
+
+public interface FeedStorage {
+    List<Feed> getAll();
+}

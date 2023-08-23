@@ -33,6 +33,11 @@ public class AnimalPassportServiceImpl implements AnimalPassportService {
     }
 
     @Override
+    public List<AnimalPassport> getAnimalPassportsByOrganizationId(Long farmId) {
+        return animalPassportStorage.getAnimalPassportsByOrganizationId(farmId);
+    }
+
+    @Override
     public AnimalPassport createAnimalPassport(AnimalPassport animalPassport, Long farmId, Long farmOriginalOwnerId, Long fatherId, Long motherId, Long geneticGroupId) {
 
         return animalPassportStorage.createAnimalPassport(animalPassport, farmId, farmOriginalOwnerId, fatherId, motherId, geneticGroupId);

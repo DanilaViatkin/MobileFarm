@@ -49,6 +49,11 @@ public class AnimalPassportStorageImpl implements AnimalPassportStorage {
     }
 
     @Override
+    public List<AnimalPassport> getAnimalPassportsByOrganizationId(Long organizationId) {
+        return animalPassportModelMapper.mapList(animalPassportRepository.findByOrganizationId(organizationId), AnimalPassport.class);
+    }
+
+    @Override
     public AnimalPassport createAnimalPassport(AnimalPassport animalPassport, Long farmId, Long farmOriginalOwnerId, Long fatherId, Long motherId, Long geneticGroupId) {
         AnimalPassportEntity ape = animalPassportModelMapper.map(animalPassport, AnimalPassportEntity.class);
         //TODO: проверка существует ли ферма по данному ид если нет то выбросить ошибку

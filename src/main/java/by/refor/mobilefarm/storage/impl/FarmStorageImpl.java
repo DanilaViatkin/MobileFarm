@@ -7,6 +7,8 @@ import by.refor.mobilefarm.storage.FarmStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class FarmStorageImpl implements FarmStorage {
 
@@ -26,5 +28,10 @@ public class FarmStorageImpl implements FarmStorage {
     @Override
     public Farm getFarmById(Long id) {
         return farmModelMapper.map(farmRepository.findById(id), Farm.class);
+    }
+
+    @Override
+    public List<Farm> getFarmsByOrganizationId(Long organizationId) {
+        return farmModelMapper.mapList(farmRepository.findByOrganization_OrganizationId(organizationId), Farm.class);
     }
 }
