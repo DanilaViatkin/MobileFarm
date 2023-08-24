@@ -14,22 +14,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @ComponentScan("by.refor.mobilefarm.*")
 public class MobileFarmApplication {
 
-//	@Value("${http.port}")
-//	private int httpPort;
-
 	public static void main(String[] args) {
 		SpringApplication.run(MobileFarmApplication.class, args);
 	}
-//	@Bean
-//	public ServletWebServerFactory servletContainer() {
-//		TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory();
-//		tomcat.addAdditionalTomcatConnectors(createStandardConnector());
-//		return tomcat;
-//	}
-//
-//	private Connector createStandardConnector() {
-//		Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
-//		connector.setPort(httpPort);
-//		return connector;
-//	}
 }

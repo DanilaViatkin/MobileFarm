@@ -5,15 +5,19 @@ services:
     build: .
     restart: always
     ports:
-      - 8080:8080
+      - "8080:8080"
     depends_on:
-      - mysql_db
-    command: sh -c './wait-for mysql_db:3306 -- npm start'
-  mysql_db:
-    image: "mysql:8.0"
-    restart: always
+      - mysqldb
+    #command: sh -c './wait-for mysql_db:3306 -- npm start'
+  mysqldb:
+    image: mysql:8.0
+    restart: unless-stopped
     ports:
-      - 3307:3306
+      - 127.0.0.1:3307:3306
     environment:
       MYSQL_DATABASE: mobilefarm
       MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - db:/var/lib/mysql
+volumes:
+  db:
