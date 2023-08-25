@@ -9,4 +9,6 @@ public interface GeneticGroupStorage {
     List<GeneticGroup> getAllGeneticGroups();
     GeneticGroup createGeneticGroup(GeneticGroup geneticGroup);
     GeneticGroup updateGeneticGroupById(Long id,GeneticGroup geneticGroup);
+
+    GeneticGroup getGeneticGroupById(Long geneticGroupId);
 }

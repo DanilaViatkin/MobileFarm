@@ -55,4 +55,9 @@ public class GeneticGroupStorageImpl implements GeneticGroupStorage {
         return geneticGroupModelMapper.map(gge,
                 GeneticGroup.class);
     }
+
+    @Override
+    public GeneticGroup getGeneticGroupById(Long geneticGroupId) {
+        return geneticGroupModelMapper.map(geneticGroupRepository.findById(geneticGroupId), GeneticGroup.class);
+    }
 }

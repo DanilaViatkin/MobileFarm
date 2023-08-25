@@ -25,4 +25,9 @@ public class FeedStorageImpl implements FeedStorage {
     public List<Feed> getAll() {
         return feedModelMapper.mapList(feedRepository.findAll(), Feed.class);
     }
+
+    @Override
+    public Feed getFeedById(Long id) {
+        return feedModelMapper.map(feedRepository.findById(id), Feed.class);
+    }
 }

@@ -18,4 +18,5 @@ public class Feed {
     private String type;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private BigDecimal amount;
+    private Nutrients nutrients;
 }
