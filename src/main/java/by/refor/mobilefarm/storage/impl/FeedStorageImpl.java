@@ -2,6 +2,7 @@ package by.refor.mobilefarm.storage.impl;
 
 import by.refor.mobilefarm.mapper.FeedModelMapper;
 import by.refor.mobilefarm.model.bo.Feed;
+import by.refor.mobilefarm.model.entity.FeedEntity;
 import by.refor.mobilefarm.repo.FeedRepository;
 import by.refor.mobilefarm.storage.FeedStorage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,7 @@ public class FeedStorageImpl implements FeedStorage {
 
     @Override
     public Feed getFeedById(Long id) {
-        return feedModelMapper.map(feedRepository.findById(id), Feed.class);
+        FeedEntity fe = feedRepository.findById(id).get();
+        return feedModelMapper.map(fe, Feed.class);
     }
 }

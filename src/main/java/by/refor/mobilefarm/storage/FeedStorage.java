@@ -6,6 +6,5 @@ import java.util.List;
 
 public interface FeedStorage {
     List<Feed> getAll();
-
     Feed getFeedById(Long id);
 }

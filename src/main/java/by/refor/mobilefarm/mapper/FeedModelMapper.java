@@ -7,8 +7,5 @@ import org.springframework.stereotype.Component;
 @Component
 public class FeedModelMapper extends MobileFarmModelMapper{
     public FeedModelMapper(){
-        super.createTypeMap(FeedEntity.class, Feed.class).addMappings(mapping -> {
-
-        });
     }
 }

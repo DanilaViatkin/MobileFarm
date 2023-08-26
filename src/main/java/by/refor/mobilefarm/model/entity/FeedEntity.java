@@ -17,6 +17,10 @@ public class FeedEntity {
     @OneToMany(mappedBy = "feed")
     private List<RationFeeds> rationFeeds;
 
+    @ManyToOne
+    @JoinColumn(name = "nutrients_id")
+    private NutrientsEntity nutrients;
+
     @Column(name = "type")
     private String type;
 

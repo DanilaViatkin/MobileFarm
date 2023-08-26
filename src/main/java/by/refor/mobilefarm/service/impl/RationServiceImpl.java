@@ -4,6 +4,7 @@ import by.refor.mobilefarm.model.bo.Feed;
 import by.refor.mobilefarm.model.bo.GeneticGroup;
 import by.refor.mobilefarm.model.bo.Nutrients;
 import by.refor.mobilefarm.model.bo.Ration;
+import by.refor.mobilefarm.model.dto.CalculatedRation;
 import by.refor.mobilefarm.service.GeneticGroupService;
 import by.refor.mobilefarm.service.RationService;
 import by.refor.mobilefarm.storage.FeedStorage;
@@ -12,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -26,14 +29,14 @@ public class RationServiceImpl implements RationService {
         this.geneticGroupStorage = geneticGroupStorage;
     }
     @Override
-    public Map<String, Nutrients> calculateRation(Ration ration, Long geneticGroupId) {
-        Map<String, Nutrients> rationNutrients = new HashMap<>();
+    public List<CalculatedRation> calculateRation(Ration ration, Long geneticGroupId) {
+       List<CalculatedRation> calculatedRations = new ArrayList<>();
         ration.getFeeds()
-                .forEach(feed -> rationNutrients.put(feed.getName(), calculateNutrients(feed.getFeedId(), feed.getAmount())));
+                .forEach(feed -> calculatedRations.add(new CalculatedRation(feed.getName(), calculateNutrients(feed.getFeedId(), feed.getAmount()))));
         GeneticGroup geneticGroup = geneticGroupStorage.getGeneticGroupById(geneticGroupId);
-        rationNutrients.put("Всего", sumTotalRationNutrients(ration));
-        rationNutrients.put(geneticGroup.getType(), geneticGroup.getNutrients());
-        return null;
+        calculatedRations.add(new CalculatedRation("Всего", sumTotalRationNutrients(calculatedRations)));
+        calculatedRations.add(new CalculatedRation(geneticGroup.getType(), geneticGroup.getNutrients()));
+        return calculatedRations;
     }
 
     private Nutrients calculateNutrients(Long feedId, BigDecimal amount){
@@ -67,34 +70,36 @@ public class RationServiceImpl implements RationService {
         return feedNutrients;
     }
 
-    private Nutrients sumTotalRationNutrients(Ration ration){
+    private Nutrients sumTotalRationNutrients(List<CalculatedRation> calculatedRations){
         Nutrients feedNutrients = new Nutrients();
-        feedNutrients.setFeedUnit(BigDecimal.valueOf(ration.getFeeds().stream().mapToDouble(feed -> feed.getNutrients().getFeedUnit().doubleValue()).sum()));
-        feedNutrients.setEnergyExchange(BigDecimal.valueOf(ration.getFeeds().stream().mapToDouble(feed -> feed.getNutrients().getEnergyExchange().doubleValue()).sum()));
-        feedNutrients.setDryMatter(BigDecimal.valueOf(ration.getFeeds().stream().mapToDouble(feed -> feed.getNutrients().getDryMatter().doubleValue()).sum()));
-        feedNutrients.setDryProtein(BigDecimal.valueOf(ration.getFeeds().stream().mapToDouble(feed -> feed.getNutrients().getDryProtein().doubleValue()).sum()));
-        feedNutrients.setDigestedProtein(BigDecimal.valueOf(ration.getFeeds().stream().mapToDouble(feed -> feed.getNutrients().getDigestedProtein().doubleValue()).sum()));
-        feedNutrients.setRawFiber(BigDecimal.valueOf(ration.getFeeds().stream().mapToDouble(feed -> feed.getNutrients().getRawFiber().doubleValue()).sum()));
-        feedNutrients.setRawFat(BigDecimal.valueOf(ration.getFeeds().stream().mapToDouble(feed -> feed.getNutrients().getRawFat().doubleValue()).sum()));
-        feedNutrients.setStarch(BigDecimal.valueOf(ration.getFeeds().stream().mapToDouble(feed -> feed.getNutrients().getStarch().doubleValue()).sum()));
-        feedNutrients.setSugar(BigDecimal.valueOf(ration.getFeeds().stream().mapToDouble(feed -> feed.getNutrients().getSugar().doubleValue()).sum()));
-        feedNutrients.setLysine(BigDecimal.valueOf(ration.getFeeds().stream().mapToDouble(feed -> feed.getNutrients().getLysine().doubleValue()).sum()));
-        feedNutrients.setMethionineAndCystitis(BigDecimal.valueOf(ration.getFeeds().stream().mapToDouble(feed -> feed.getNutrients().getMethionineAndCystitis().doubleValue()).sum()));
-        feedNutrients.setCalcium(BigDecimal.valueOf(ration.getFeeds().stream().mapToDouble(feed -> feed.getNutrients().getCalcium().doubleValue()).sum()));
-        feedNutrients.setPhosphorus(BigDecimal.valueOf(ration.getFeeds().stream().mapToDouble(feed -> feed.getNutrients().getPhosphorus().doubleValue()).sum()));
-        feedNutrients.setMagnesium(BigDecimal.valueOf(ration.getFeeds().stream().mapToDouble(feed -> feed.getNutrients().getMagnesium().doubleValue()).sum()));
-        feedNutrients.setPotassium(BigDecimal.valueOf(ration.getFeeds().stream().mapToDouble(feed -> feed.getNutrients().getPotassium().doubleValue()).sum()));
-        feedNutrients.setSulfur(BigDecimal.valueOf(ration.getFeeds().stream().mapToDouble(feed -> feed.getNutrients().getSulfur().doubleValue()).sum()));
-        feedNutrients.setFerrum(BigDecimal.valueOf(ration.getFeeds().stream().mapToDouble(feed -> feed.getNutrients().getFerrum().doubleValue()).sum()));
-        feedNutrients.setCopper(BigDecimal.valueOf(ration.getFeeds().stream().mapToDouble(feed -> feed.getNutrients().getCopper().doubleValue()).sum()));
-        feedNutrients.setZins(BigDecimal.valueOf(ration.getFeeds().stream().mapToDouble(feed -> feed.getNutrients().getZins().doubleValue()).sum()));
-        feedNutrients.setMagnesium(BigDecimal.valueOf(ration.getFeeds().stream().mapToDouble(feed -> feed.getNutrients().getManganese().doubleValue()).sum()));
-        feedNutrients.setCobalt(BigDecimal.valueOf(ration.getFeeds().stream().mapToDouble(feed -> feed.getNutrients().getCobalt().doubleValue()).sum()));
-        feedNutrients.setIodine(BigDecimal.valueOf(ration.getFeeds().stream().mapToDouble(feed -> feed.getNutrients().getIodine().doubleValue()).sum()));
-        feedNutrients.setCarotene(BigDecimal.valueOf(ration.getFeeds().stream().mapToDouble(feed -> feed.getNutrients().getCarotene().doubleValue()).sum()));
-        feedNutrients.setVitaminE(BigDecimal.valueOf(ration.getFeeds().stream().mapToDouble(feed -> feed.getNutrients().getVitaminE().doubleValue()).sum()));
-        feedNutrients.setVitaminD(BigDecimal.valueOf(ration.getFeeds().stream().mapToDouble(feed -> feed.getNutrients().getVitaminD().doubleValue()).sum()));
-        feedNutrients.setSalt(BigDecimal.valueOf(ration.getFeeds().stream().mapToDouble(feed -> feed.getNutrients().getSalt().doubleValue()).sum()));
+        calculatedRations.forEach(calculatedRation -> {
+                            feedNutrients.setFeedUnit(calculatedRation.getNutrients().getFeedUnit().add(calculatedRation.getNutrients().getFeedUnit()));
+                            feedNutrients.setEnergyExchange(calculatedRation.getNutrients().getEnergyExchange().add(calculatedRation.getNutrients().getEnergyExchange()));
+                            feedNutrients.setDryMatter(calculatedRation.getNutrients().getDryMatter().add(calculatedRation.getNutrients().getDryMatter()));
+                            feedNutrients.setDryProtein(calculatedRation.getNutrients().getDryProtein().add(calculatedRation.getNutrients().getDryProtein()));
+                            feedNutrients.setDigestedProtein(calculatedRation.getNutrients().getDigestedProtein().add(calculatedRation.getNutrients().getDigestedProtein()));
+                            feedNutrients.setRawFiber(calculatedRation.getNutrients().getRawFiber().add(calculatedRation.getNutrients().getRawFiber()));
+                            feedNutrients.setRawFat(calculatedRation.getNutrients().getRawFat().add(calculatedRation.getNutrients().getRawFat()));
+                            feedNutrients.setStarch(calculatedRation.getNutrients().getStarch().add(calculatedRation.getNutrients().getStarch()));
+                            feedNutrients.setSugar(calculatedRation.getNutrients().getSugar().add(calculatedRation.getNutrients().getSugar()));
+                            feedNutrients.setLysine(calculatedRation.getNutrients().getLysine().add(calculatedRation.getNutrients().getLysine()));
+                            feedNutrients.setMethionineAndCystitis(calculatedRation.getNutrients().getMethionineAndCystitis().add(calculatedRation.getNutrients().getMethionineAndCystitis()));
+                            feedNutrients.setCalcium(calculatedRation.getNutrients().getCalcium().add(calculatedRation.getNutrients().getCalcium()));
+                            feedNutrients.setPhosphorus(calculatedRation.getNutrients().getPhosphorus().add(calculatedRation.getNutrients().getPhosphorus()));
+                            feedNutrients.setMagnesium(calculatedRation.getNutrients().getMagnesium().add(calculatedRation.getNutrients().getMagnesium()));
+                            feedNutrients.setPotassium(calculatedRation.getNutrients().getPotassium().add(calculatedRation.getNutrients().getPotassium()));
+                            feedNutrients.setSulfur(calculatedRation.getNutrients().getSulfur().add(calculatedRation.getNutrients().getSulfur()));
+                            feedNutrients.setFerrum(calculatedRation.getNutrients().getFerrum().add(calculatedRation.getNutrients().getFerrum()));
+                            feedNutrients.setCopper(calculatedRation.getNutrients().getCopper().add(calculatedRation.getNutrients().getCopper()));
+                            feedNutrients.setZins(calculatedRation.getNutrients().getZins().add(calculatedRation.getNutrients().getZins()));
+                            feedNutrients.setMagnesium(calculatedRation.getNutrients().getMagnesium().add(calculatedRation.getNutrients().getMagnesium()));
+                            feedNutrients.setCobalt(calculatedRation.getNutrients().getCobalt().add(calculatedRation.getNutrients().getCobalt()));
+                            feedNutrients.setIodine(calculatedRation.getNutrients().getIodine().add(calculatedRation.getNutrients().getIodine()));
+                            feedNutrients.setCarotene(calculatedRation.getNutrients().getCarotene().add(calculatedRation.getNutrients().getCarotene()));
+                            feedNutrients.setVitaminE(calculatedRation.getNutrients().getVitaminE().add(calculatedRation.getNutrients().getVitaminE()));
+                            feedNutrients.setVitaminD(calculatedRation.getNutrients().getVitaminD().add(calculatedRation.getNutrients().getVitaminD()));
+                            feedNutrients.setSalt(calculatedRation.getNutrients().getSalt().add(calculatedRation.getNutrients().getSalt()));
+                        });
         return feedNutrients;
     }
 }
