@@ -11,7 +11,7 @@ public class LocationEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long locationId;
 
-    @Column(name = "index", length = 6, nullable = false)
+    @Column(name = "index", nullable = false)
     private String index;
 
     @Column(name = "region", nullable = false)
