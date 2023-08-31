@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class LocationModelMapper extends MobileFarmModelMapper{
     public LocationModelMapper(){
         super.createTypeMap(LocationEntity.class, Location.class).addMappings(mapping -> {
-            mapping.map(LocationEntity::getLocationIndex, Location::setIndex);
+            mapping.map(LocationEntity::getLocationIndex, Location::setLocationIndex);
             mapping.map(LocationEntity::getRegion, Location::setRegion);
             mapping.map(LocationEntity::getDistrict, Location::setDistrict);
             mapping.map(LocationEntity::getLocationName, Location::setLocationName);

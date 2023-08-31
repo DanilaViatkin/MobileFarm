@@ -4,7 +4,8 @@ import lombok.Data;
 
 @Data
 public class Location {
-    private String index;
+    private Long locationId;
+    private String locationIndex;
     private String region;
     private String district;
     private String locationName;

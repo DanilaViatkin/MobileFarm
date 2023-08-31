@@ -5,4 +5,5 @@ import by.refor.mobilefarm.model.bo.Organization;
 public interface OrganizationStorage {
     Organization getOrganizationByGLN(String gln);
     Organization getOrganizationByUNP(String unp);
+    Organization createOrganization(Organization organization);
 }

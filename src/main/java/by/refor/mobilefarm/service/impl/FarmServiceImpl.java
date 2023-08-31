@@ -26,4 +26,9 @@ public class FarmServiceImpl implements FarmService {
     public List<Farm> getFarmsByOrganizationId(Long organizationId) {
         return farmStorage.getFarmsByOrganizationId(organizationId);
     }
+
+    @Override
+    public Farm createFarm(Farm farm, Long organizationId) {
+        return farmStorage.createFarm(farm, organizationId);
+    }
 }

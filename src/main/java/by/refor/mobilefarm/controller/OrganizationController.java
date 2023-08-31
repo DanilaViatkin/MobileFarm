@@ -31,4 +31,10 @@ public class OrganizationController {
         Organization org = organizationService.getOrganizationByUNP(unp);
         return org;
     }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Organization createOrganization(@RequestBody Organization organization){
+        return organizationService.createOrganization(organization);
+    }
 }

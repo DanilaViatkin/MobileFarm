@@ -24,4 +24,9 @@ public class OrganizationServiceImpl implements OrganizationService {
     public Organization getOrganizationByUNP(String unp) {
         return organizationStorage.getOrganizationByUNP(unp);
     }
+
+    @Override
+    public Organization createOrganization(Organization organization) {
+        return organizationStorage.createOrganization(organization);
+    }
 }

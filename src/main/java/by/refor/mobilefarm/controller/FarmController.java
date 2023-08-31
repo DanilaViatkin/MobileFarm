@@ -3,6 +3,7 @@ package by.refor.mobilefarm.controller;
 import by.refor.mobilefarm.model.bo.Farm;
 import by.refor.mobilefarm.service.FarmService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,5 +26,12 @@ public class FarmController {
     @GetMapping
     public List<Farm> getFarmsByOrganizationId(@RequestParam("organization_id") Long organizationId){
         return farmService.getFarmsByOrganizationId(organizationId);
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Farm createFarm(@RequestBody Farm farm,
+                           @RequestParam("organization_id") Long organizationId){
+        return farmService.createFarm(farm, organizationId);
     }
 }

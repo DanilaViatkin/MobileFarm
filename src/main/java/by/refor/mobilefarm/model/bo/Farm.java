@@ -2,6 +2,7 @@ package by.refor.mobilefarm.model.bo;
 
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,6 +24,8 @@ public class Farm {
     private Owner owner;
     private Location location;
     private String organizationName;
+//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+//    private List<AnimalPassport> animalPassports;
     private Long animalAmount;
 
     @Override

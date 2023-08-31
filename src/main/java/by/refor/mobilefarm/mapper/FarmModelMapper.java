@@ -9,6 +9,7 @@ import org.modelmapper.Converter;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Objects;
 
 @Component
 public class FarmModelMapper extends MobileFarmModelMapper{
@@ -20,7 +21,7 @@ public class FarmModelMapper extends MobileFarmModelMapper{
     }
 
     public Converter<List<AnimalPassportEntity>, Long> FarmEntityAnimalAmount() {
-        return context -> (long) context.getSource().size();
+        return context -> Objects.nonNull(context.getSource()) ? context.getSource().size() : 0L;
     }
 
     private Converter<OrganizationEntity, String> organizationEntityNameStringConverter(){
