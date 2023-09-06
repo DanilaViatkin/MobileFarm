@@ -60,4 +60,10 @@ public class FarmStorageImpl implements FarmStorage {
         fe.setOrganization(organizationRepository.findById(organizationId).get());
         return farmModelMapper.map(farmRepository.save(fe), Farm.class);
     }
+
+    @Override
+    public void deleteFarmById(Long farmId) {
+        FarmEntity fe = farmRepository.findById(farmId).get();
+        farmRepository.delete(fe);
+    }
 }

@@ -11,4 +11,6 @@ public interface AnimalPassportService {
 
     AnimalPassport createAnimalPassport(AnimalPassport animalPassport, Long farmId, Long farmOriginalOwnerId, Long fatherId, Long motherId, Long geneticGroupId);
     AnimalPassport updateAnimalPassportByExternalId(AnimalPassport animalPassport, String externalId,Long farmId, Long farmOriginalOwnerId, Long geneticGroupId);
+
+    void deleteAnimalPassportById(Long animalPassportId);
 }

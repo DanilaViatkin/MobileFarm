@@ -18,4 +18,9 @@ public class OwnerServiceImpl implements OwnerService {
     public Owner createOwner(Owner owner) {
         return ownerStorage.createOwner(owner);
     }
+
+    @Override
+    public void deleteOwner(Long ownerId) {
+        ownerStorage.deleteOwner(ownerId);
+    }
 }

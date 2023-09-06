@@ -23,4 +23,10 @@ public class OwnerStorageImpl implements OwnerStorage {
     public Owner createOwner(Owner owner) {
         return ownerModelMapper.map(ownerRepository.save(ownerModelMapper.map(owner, OwnerEntity.class)), Owner.class);
     }
+
+    @Override
+    public void deleteOwner(Long ownerId) {
+        OwnerEntity oe = ownerRepository.findById(ownerId).get();
+        ownerRepository.delete(oe);
+    }
 }

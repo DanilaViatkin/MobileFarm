@@ -20,7 +20,13 @@ public class OwnerController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Owner createLocation(@RequestBody Owner owner){
+    public Owner createOwner(@RequestBody Owner owner){
         return ownerService.createOwner(owner);
+    }
+
+    @DeleteMapping("/{ownerId}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteOwner(@PathVariable Long ownerId){
+        ownerService.deleteOwner(ownerId);
     }
 }

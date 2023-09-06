@@ -10,4 +10,6 @@ public interface FarmService {
     Farm getFarmByGLN(String gln);
     List<Farm> getFarmsByOrganizationId(Long organizationId);
     Farm createFarm(Farm farm, Long organizationId);
+
+    void deleteFarmById(Long farmId);
 }

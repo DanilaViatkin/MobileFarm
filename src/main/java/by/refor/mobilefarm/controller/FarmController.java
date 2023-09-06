@@ -34,4 +34,10 @@ public class FarmController {
                            @RequestParam("organization_id") Long organizationId){
         return farmService.createFarm(farm, organizationId);
     }
+
+    @DeleteMapping("/{farmId}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteFarmById(@PathVariable Long farmId){
+        farmService.deleteFarmById(farmId);
+    }
 }

@@ -4,6 +4,7 @@ import by.refor.mobilefarm.model.bo.AnimalPassport;
 import by.refor.mobilefarm.service.AnimalPassportService;
 import jakarta.annotation.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -51,5 +52,11 @@ public class AnimalPassportController {
                                                            @RequestParam("farm_original_owner_id") @Nullable Long farmOriginalOwnerId,
                                                            @RequestParam("genetic_group_id") @Nullable Long geneticGroupId){
         return animalPassportService.updateAnimalPassportByExternalId(animalPassport, externalId, farmId, farmOriginalOwnerId, geneticGroupId);
+    }
+
+    @DeleteMapping("/{animalPassportId}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteAnimalPassportById(@PathVariable Long animalPassportId){
+        animalPassportService.deleteAnimalPassportById(animalPassportId);
     }
 }

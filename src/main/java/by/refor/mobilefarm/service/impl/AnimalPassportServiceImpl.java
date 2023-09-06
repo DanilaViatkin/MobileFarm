@@ -47,4 +47,9 @@ public class AnimalPassportServiceImpl implements AnimalPassportService {
     public     AnimalPassport updateAnimalPassportByExternalId(AnimalPassport animalPassport, String externalId,Long farmId, Long farmOriginalOwnerId, Long geneticGroupId) {
         return animalPassportStorage.updateAnimalPassportByExternalId(animalPassport, externalId, farmId, farmOriginalOwnerId, geneticGroupId);
     }
+
+    @Override
+    public void deleteAnimalPassportById(Long animalPassportId) {
+        animalPassportStorage.deleteAnimalPassportById(animalPassportId);
+    }
 }

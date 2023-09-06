@@ -23,4 +23,5 @@ public class FeedServiceImpl implements FeedService {
     public List<Feed> getAll() {
         return feedStorage.getAll();
     }
+    
 }

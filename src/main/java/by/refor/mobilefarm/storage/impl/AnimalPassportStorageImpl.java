@@ -98,5 +98,9 @@ public class AnimalPassportStorageImpl implements AnimalPassportStorage {
         return animalPassportModelMapper.map(updatedApe, AnimalPassport.class);
     }
 
-
+    @Override
+    public void deleteAnimalPassportById(Long animalPassportId) {
+        AnimalPassportEntity ape = animalPassportRepository.findById(animalPassportId).get();
+        animalPassportRepository.delete(ape);
+    }
 }

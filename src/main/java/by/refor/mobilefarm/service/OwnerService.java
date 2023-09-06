@@ -1,8 +1,8 @@
-package by.refor.mobilefarm.storage;
+package by.refor.mobilefarm.service;
 
 import by.refor.mobilefarm.model.bo.Owner;
 
-public interface OwnerStorage {
+public interface OwnerService {
     Owner createOwner(Owner owner);
     void deleteOwner(Long ownerId);
 }

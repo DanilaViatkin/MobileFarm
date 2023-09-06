@@ -31,4 +31,9 @@ public class FarmServiceImpl implements FarmService {
     public Farm createFarm(Farm farm, Long organizationId) {
         return farmStorage.createFarm(farm, organizationId);
     }
+
+    @Override
+    public void deleteFarmById(Long farmId) {
+        farmStorage.deleteFarmById(farmId);
+    }
 }
