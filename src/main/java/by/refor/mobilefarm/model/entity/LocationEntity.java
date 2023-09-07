@@ -35,6 +35,9 @@ public class LocationEntity {
     @Column(name = "corpus_number")
     private String corpusNumber;
 
+    @Column(name = "flat_number")
+    private String flatNumber;
+
     @Column(name = "phone_number", nullable = false)
     private String phoneNumber;
 

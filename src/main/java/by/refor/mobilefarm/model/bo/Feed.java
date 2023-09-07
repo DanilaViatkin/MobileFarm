@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @Accessors(chain = true)
 public class Feed {
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long feedId;
     private String name;
     private String type;

@@ -10,7 +10,7 @@ public interface FarmStorage {
 
     List<Farm> getFarmsByOrganizationId(Long organizationId);
     Farm createFarm(Farm farm, Long organizationId);
-
+    Farm updateFarmById(Farm farm, String gln, Long organizationId, Long ownerId);
     void deleteFarmById(Long farmId);
 
 }

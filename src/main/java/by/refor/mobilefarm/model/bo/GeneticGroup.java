@@ -15,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Accessors(chain = true)
 public class GeneticGroup {
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long geneticGroupId;
     private String type;
     private BigDecimal productivity;

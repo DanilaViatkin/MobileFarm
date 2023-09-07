@@ -33,6 +33,11 @@ public class FarmServiceImpl implements FarmService {
     }
 
     @Override
+    public Farm updateFarmById(Farm farm, String gln, Long organizationId, Long ownerId) {
+        return farmStorage.updateFarmById(farm, gln, organizationId, ownerId);
+    }
+
+    @Override
     public void deleteFarmById(Long farmId) {
         farmStorage.deleteFarmById(farmId);
     }

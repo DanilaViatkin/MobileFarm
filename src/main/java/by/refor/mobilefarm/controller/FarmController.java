@@ -35,6 +35,15 @@ public class FarmController {
         return farmService.createFarm(farm, organizationId);
     }
 
+    @PatchMapping("/{gln}")
+    @ResponseStatus(HttpStatus.OK)
+    public Farm updateFarmById(@RequestBody Farm farm,
+                               @PathVariable String gln,
+                               @RequestParam("organization_id") Long organizationId,
+                               @RequestParam("owner_id") Long ownerId){
+        return farmService.updateFarmById(farm, gln, organizationId, ownerId);
+    }
+
     @DeleteMapping("/{farmId}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteFarmById(@PathVariable Long farmId){

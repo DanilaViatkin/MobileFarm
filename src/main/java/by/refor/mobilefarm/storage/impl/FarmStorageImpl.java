@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Objects;
 
 @Component
 public class FarmStorageImpl implements FarmStorage {
@@ -58,6 +59,19 @@ public class FarmStorageImpl implements FarmStorage {
         fe.setLocation(locationRepository.save(fe.getLocation()));
         fe.setOwner(ownerRepository.save(fe.getOwner()));
         fe.setOrganization(organizationRepository.findById(organizationId).get());
+        return farmModelMapper.map(farmRepository.save(fe), Farm.class);
+    }
+
+    @Override
+    public Farm updateFarmById(Farm farm, String gln, Long organizationId, Long ownerId) {
+        FarmEntity fe = farmRepository.findByGln(gln);
+        farmModelMapper.map(farm, fe);
+        if (Objects.nonNull(organizationId)){
+            fe.setOrganization(organizationRepository.findById(organizationId).get());
+        }
+        if (Objects.nonNull(ownerId)){
+            fe.setOwner(ownerRepository.findById(ownerId).get());
+        }
         return farmModelMapper.map(farmRepository.save(fe), Farm.class);
     }
 

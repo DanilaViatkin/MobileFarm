@@ -1,6 +1,7 @@
 package by.refor.mobilefarm.model.bo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,6 +12,7 @@ import java.time.OffsetDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AnimalPassport {
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long animalPassportId;
     private OffsetDateTime createdDate;
     private String externalId;

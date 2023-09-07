@@ -28,7 +28,7 @@ public class FarmEntity {
 
     @OneToMany(mappedBy = "farm")
     private List<AnimalPassportEntity> animalPassports;
-    //TODO: отличается ли от gln организации
+
     @Column(name = "gln", nullable = false)
     private String gln;
 
@@ -40,4 +40,10 @@ public class FarmEntity {
 
     @Column(name = "forming_date", nullable = false)
     private OffsetDateTime formingDate;
+
+    @Column(name = "is_formed", nullable = false)
+    private Boolean isFormed;
+
+    @Column(name = "former_name", nullable = false)
+    private String formerName;
 }
