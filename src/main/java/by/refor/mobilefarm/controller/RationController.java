@@ -26,4 +26,9 @@ public class RationController {
         return rationService.calculateRation(ration, geneticGroupId);
     }
 
+    @DeleteMapping("/{rationId}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteRationById(@PathVariable Long rationId){
+        rationService.deleteRationById(rationId);
+    }
 }

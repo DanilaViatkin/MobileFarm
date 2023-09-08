@@ -64,6 +64,11 @@ public class OrganizationStorageImpl implements OrganizationStorage {
         return organizationModelMapper.map(organizationRepository.save(oe), Organization.class);
     }
 
+    @Override
+    public void deleteOrganizationById(Long organizationId) {
+        organizationRepository.delete(organizationRepository.findById(organizationId).get());
+    }
+
     private Organization mapOrganiztionEntityToOrganization(OrganizationEntity organizationEntity) {
         Organization org = organizationModelMapper.map(organizationEntity, Organization.class);
         org.setFarms(farmModelMapper.mapList(organizationEntity.getFarms(), Farm.class));

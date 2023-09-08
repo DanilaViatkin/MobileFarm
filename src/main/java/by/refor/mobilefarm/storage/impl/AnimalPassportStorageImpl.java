@@ -37,7 +37,7 @@ public class AnimalPassportStorageImpl implements AnimalPassportStorage {
     @Override
     public AnimalPassport getAnimalPassportByExternalId(String id) {
         //TODO: не работает маппинг родителей
-        AnimalPassportEntity ape = animalPassportRepository.findByExternalId(id);
+        AnimalPassportEntity ape = animalPassportRepository.findByExternalId(id).get();
         AnimalPassport ap = animalPassportModelMapper.map(ape, AnimalPassport.class);
         System.out.println("me");
         return ap;
@@ -54,18 +54,19 @@ public class AnimalPassportStorageImpl implements AnimalPassportStorage {
     }
 
     @Override
-    public AnimalPassport createAnimalPassport(AnimalPassport animalPassport, Long farmId, Long farmOriginalOwnerId, Long fatherId, Long motherId, Long geneticGroupId) {
+    public AnimalPassport createAnimalPassport(AnimalPassport animalPassport, Long farmId, Long farmOriginalOwnerId,
+                                               String fatherExternalId, String motherExternalId, Long geneticGroupId) {
         AnimalPassportEntity ape = animalPassportModelMapper.map(animalPassport, AnimalPassportEntity.class);
         //TODO: проверка существует ли ферма по данному ид если нет то выбросить ошибку
-        // проверка паспорта по external_id
+        //проверка паспорта по external_id
         if(Objects.nonNull(farmOriginalOwnerId)){
             ape.setOriginalOwnerFarm(farmRepository.findById(farmOriginalOwnerId).get());
         }
-        if(Objects.nonNull(fatherId)){
-            ape.setFather(animalPassportRepository.findById(fatherId).get());
+        if(Objects.nonNull(fatherExternalId)){
+            ape.setFather(animalPassportRepository.findByExternalId(fatherExternalId).get());
         }
-        if(Objects.nonNull(motherId)){
-            ape.setMother(animalPassportRepository.findById(motherId).get());
+        if(Objects.nonNull(motherExternalId)){
+            ape.setMother(animalPassportRepository.findByExternalId(motherExternalId).get());
         }
         if(Objects.nonNull(geneticGroupId)){
             ape.setGeneticGroup(geneticGroupRepository.findById(geneticGroupId).get());
@@ -80,9 +81,10 @@ public class AnimalPassportStorageImpl implements AnimalPassportStorage {
 
     @Override
     public AnimalPassport updateAnimalPassportByExternalId(AnimalPassport animalPassport, String externalId, Long farmId, Long farmOriginalOwnerId, Long geneticGroupId) {
-        AnimalPassportEntity ape = animalPassportRepository.findByExternalId(externalId);
+        AnimalPassportEntity ape = animalPassportRepository.findByExternalId(externalId).get();
         AnimalPassportEntity frontAP = animalPassportModelMapper.map(animalPassport, AnimalPassportEntity.class);
         animalPassportModelMapper.map(frontAP, ape);
+
         if (Objects.nonNull(farmId)){
             ape.setFarm(farmRepository.findById(farmId).get());
         }

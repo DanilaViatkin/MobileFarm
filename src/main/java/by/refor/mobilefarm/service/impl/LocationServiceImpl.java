@@ -19,4 +19,9 @@ public class LocationServiceImpl implements LocationService {
     public Location createLocation(Location location) {
         return locationStorage.createLocation(location);
     }
+
+    @Override
+    public void deleteLocationById(Long locationId) {
+        locationStorage.deleteLocationById(locationId);
+    }
 }

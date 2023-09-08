@@ -7,4 +7,5 @@ public interface OrganizationService {
     Organization getOrganizationByUNP(String unp);
 
     Organization createOrganization(Organization organization);
+    void deleteOrganizationById(Long organizationId);
 }

@@ -9,6 +9,7 @@ import by.refor.mobilefarm.service.GeneticGroupService;
 import by.refor.mobilefarm.service.RationService;
 import by.refor.mobilefarm.storage.FeedStorage;
 import by.refor.mobilefarm.storage.GeneticGroupStorage;
+import by.refor.mobilefarm.storage.RationStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,11 +23,14 @@ import java.util.Map;
 public class RationServiceImpl implements RationService {
     private final FeedStorage feedStorage;
     private final GeneticGroupStorage geneticGroupStorage;
+    private final RationStorage rationStorage;
     @Autowired
     public RationServiceImpl(FeedStorage feedStorage,
-                             GeneticGroupStorage geneticGroupStorage){
+                             GeneticGroupStorage geneticGroupStorage,
+                             RationStorage rationStorage){
         this.feedStorage = feedStorage;
         this.geneticGroupStorage = geneticGroupStorage;
+        this.rationStorage = rationStorage;
     }
     @Override
     public List<CalculatedRation> calculateRation(Ration ration, Long geneticGroupId) {
@@ -37,6 +41,11 @@ public class RationServiceImpl implements RationService {
         calculatedRations.add(new CalculatedRation("Всего", sumTotalRationNutrients(calculatedRations)));
         calculatedRations.add(new CalculatedRation(geneticGroup.getType(), geneticGroup.getNutrients()));
         return calculatedRations;
+    }
+
+    @Override
+    public void deleteRationById(Long rationId) {
+        rationStorage.deleteRationById(rationId);
     }
 
     private Nutrients calculateNutrients(Long feedId, BigDecimal amount){

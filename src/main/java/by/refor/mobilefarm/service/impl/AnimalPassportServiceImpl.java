@@ -38,9 +38,8 @@ public class AnimalPassportServiceImpl implements AnimalPassportService {
     }
 
     @Override
-    public AnimalPassport createAnimalPassport(AnimalPassport animalPassport, Long farmId, Long farmOriginalOwnerId, Long fatherId, Long motherId, Long geneticGroupId) {
-
-        return animalPassportStorage.createAnimalPassport(animalPassport, farmId, farmOriginalOwnerId, fatherId, motherId, geneticGroupId);
+    public AnimalPassport createAnimalPassport(AnimalPassport animalPassport, Long farmId, Long farmOriginalOwnerId, String fatherExternalId, String motherExternalId, Long geneticGroupId) {
+        return animalPassportStorage.createAnimalPassport(animalPassport, farmId, farmOriginalOwnerId, fatherExternalId, motherExternalId, geneticGroupId);
     }
 
     @Override

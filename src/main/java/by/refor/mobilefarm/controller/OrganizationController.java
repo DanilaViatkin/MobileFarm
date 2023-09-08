@@ -37,4 +37,10 @@ public class OrganizationController {
     public Organization createOrganization(@RequestBody Organization organization){
         return organizationService.createOrganization(organization);
     }
+
+    @DeleteMapping("/{organizationId}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteOrganizationById(@PathVariable Long organizationId){
+        organizationService.deleteOrganizationById(organizationId);
+    }
 }

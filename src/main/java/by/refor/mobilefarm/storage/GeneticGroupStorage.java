@@ -10,4 +10,7 @@ public interface GeneticGroupStorage {
     GeneticGroup createGeneticGroup(GeneticGroup geneticGroup);
     GeneticGroup updateGeneticGroupById(Long id,GeneticGroup geneticGroup);
     GeneticGroup getGeneticGroupById(Long geneticGroupId);
+
+    void deleteGeneticGroupById(Long geneticGroupId);
+
 }

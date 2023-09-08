@@ -5,9 +5,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface AnimalPassportRepository extends JpaRepository<AnimalPassportEntity, Long> {
-    AnimalPassportEntity findByExternalId(String externalId);
+    Optional<AnimalPassportEntity> findByExternalId(String externalId);
     List<AnimalPassportEntity> findByFarm_FarmId(Long farmId);
 
     @Query("SELECT ap FROM OrganizationEntity o\n" +

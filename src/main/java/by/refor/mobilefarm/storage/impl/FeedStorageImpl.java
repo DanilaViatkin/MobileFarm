@@ -32,4 +32,9 @@ public class FeedStorageImpl implements FeedStorage {
         FeedEntity fe = feedRepository.findById(id).get();
         return feedModelMapper.map(fe, Feed.class);
     }
+
+    @Override
+    public void deleteFeedById(Long feedId) {
+        feedRepository.delete(feedRepository.findById(feedId).get());
+    }
 }

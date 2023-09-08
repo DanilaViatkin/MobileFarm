@@ -25,4 +25,9 @@ public class LocationStorageImpl implements LocationStorage {
     public Location createLocation(Location location) {
         return locationModelMapper.map(locationRepository.save(locationModelMapper.map(location, LocationEntity.class)), Location.class);
     }
+
+    @Override
+    public void deleteLocationById(Long locationId) {
+        locationRepository.delete(locationRepository.findById(locationId).get());
+    }
 }

@@ -39,10 +39,10 @@ public class AnimalPassportController {
     public AnimalPassport createAnimalPassport(@RequestBody AnimalPassport animalPassport,
                                                @RequestParam("farm_id") Long farmId,
                                                @RequestParam("farm_original_owner_id") @Nullable Long farmOriginalOwnerId,
-                                               @RequestParam("father_id") @Nullable Long fatherId,
-                                               @RequestParam("mother_id") @Nullable Long motherId,
+                                               @RequestParam("father_external_id") @Nullable String fatherExternalId,
+                                               @RequestParam("mother_external_id") @Nullable String motherExternalId,
                                                @RequestParam("genetic_group_id") @Nullable Long geneticGroupId){
-        return animalPassportService.createAnimalPassport(animalPassport, farmId, farmOriginalOwnerId, fatherId, motherId, geneticGroupId);
+        return animalPassportService.createAnimalPassport(animalPassport, farmId, farmOriginalOwnerId, fatherExternalId, motherExternalId, geneticGroupId);
     }
 
     @PatchMapping("/{externalId}")

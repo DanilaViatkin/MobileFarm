@@ -29,4 +29,9 @@ public class OrganizationServiceImpl implements OrganizationService {
     public Organization createOrganization(Organization organization) {
         return organizationStorage.createOrganization(organization);
     }
+
+    @Override
+    public void deleteOrganizationById(Long organizationId) {
+        organizationStorage.deleteOrganizationById(organizationId);
+    }
 }

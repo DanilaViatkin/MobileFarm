@@ -4,9 +4,8 @@ import by.refor.mobilefarm.model.bo.Feed;
 import by.refor.mobilefarm.service.FeedService;
 import by.refor.mobilefarm.service.impl.FeedServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,4 +25,9 @@ public class FeedController {
         return feedService.getAll();
     }
 
+    @DeleteMapping("/{feedId}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteFeedById(@PathVariable Long feedId){
+        feedService.deleteFeedById(feedId);
+    }
 }

@@ -35,4 +35,9 @@ public class GeneticGroupServiceImpl implements GeneticGroupService {
     public GeneticGroup updateGeneticGroupById(Long id, GeneticGroup geneticGroup) {
         return geneticGroupStorage.updateGeneticGroupById(id, geneticGroup);
     }
+
+    @Override
+    public void deleteGeneticGroupById(Long geneticGroupId) {
+        geneticGroupStorage.deleteGeneticGroupById(geneticGroupId);
+    }
 }

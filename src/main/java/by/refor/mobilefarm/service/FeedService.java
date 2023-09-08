@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface FeedService {
     List<Feed> getAll();
+
+    void deleteFeedById(Long feedId);
 }

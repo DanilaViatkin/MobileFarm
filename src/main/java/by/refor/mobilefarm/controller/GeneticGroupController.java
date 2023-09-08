@@ -42,4 +42,10 @@ public class GeneticGroupController {
                                                @PathVariable Long geneticGroupId){
         return geneticGroupService.updateGeneticGroupById(geneticGroupId, geneticGroup);
     }
+
+    @DeleteMapping("/{geneticGroupId}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteGeneticGroupById(@PathVariable Long geneticGroupId){
+        geneticGroupService.deleteGeneticGroupById(geneticGroupId);
+    }
 }
