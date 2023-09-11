@@ -1,12 +1,9 @@
 package by.refor.mobilefarm.storage.impl;
 
+import by.refor.mobilefarm.exception.custom.NotFoundEntityException;
 import by.refor.mobilefarm.mapper.FarmModelMapper;
-import by.refor.mobilefarm.mapper.LocationModelMapper;
-import by.refor.mobilefarm.mapper.OwnerModelMapper;
 import by.refor.mobilefarm.model.bo.Farm;
-import by.refor.mobilefarm.model.bo.Organization;
 import by.refor.mobilefarm.model.entity.FarmEntity;
-import by.refor.mobilefarm.model.entity.OrganizationEntity;
 import by.refor.mobilefarm.repo.FarmRepository;
 import by.refor.mobilefarm.repo.LocationRepository;
 import by.refor.mobilefarm.repo.OrganizationRepository;
@@ -40,12 +37,12 @@ public class FarmStorageImpl implements FarmStorage {
         this.locationRepository = locationRepository;
     }
     public Farm getFarmByGLN(String gln) {
-        return farmModelMapper.map(farmRepository.findByGln(gln), Farm.class);
+        return farmModelMapper.map(farmRepository.findByGln(gln).orElseThrow(() -> new NotFoundEntityException("farm.gln.not.found", gln)), Farm.class);
     }
 
     @Override
     public Farm getFarmById(Long id) {
-        return farmModelMapper.map(farmRepository.findById(id), Farm.class);
+        return farmModelMapper.map(farmRepository.findById(id).orElseThrow(() -> new NotFoundEntityException("farm.not.found", id)), Farm.class);
     }
 
     @Override
@@ -58,16 +55,16 @@ public class FarmStorageImpl implements FarmStorage {
         FarmEntity fe = farmModelMapper.map(farm, FarmEntity.class);
         fe.setLocation(locationRepository.save(fe.getLocation()));
         fe.setOwner(ownerRepository.save(fe.getOwner()));
-        fe.setOrganization(organizationRepository.findById(organizationId).get());
+        fe.setOrganization(organizationRepository.findById(organizationId).orElseThrow(() -> new NotFoundEntityException("organization.not.found", organizationId)));
         return farmModelMapper.map(farmRepository.save(fe), Farm.class);
     }
 
     @Override
     public Farm updateFarmById(Farm farm, String gln, Long organizationId, Long ownerId) {
-        FarmEntity fe = farmRepository.findByGln(gln);
+        FarmEntity fe = farmRepository.findByGln(gln).orElseThrow(() -> new NotFoundEntityException("farm.gln.not.found", gln));
         farmModelMapper.map(farm, fe);
         if (Objects.nonNull(organizationId)){
-            fe.setOrganization(organizationRepository.findById(organizationId).get());
+            fe.setOrganization(organizationRepository.findById(organizationId).orElseThrow(() -> new NotFoundEntityException("organization.not.found", organizationId)));
         }
         if (Objects.nonNull(ownerId)){
             fe.setOwner(ownerRepository.findById(ownerId).get());

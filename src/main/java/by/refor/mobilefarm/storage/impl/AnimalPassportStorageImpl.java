@@ -1,9 +1,9 @@
 package by.refor.mobilefarm.storage.impl;
 
+import by.refor.mobilefarm.exception.custom.NotFoundEntityException;
 import by.refor.mobilefarm.mapper.AnimalPassportModelMapper;
 import by.refor.mobilefarm.model.bo.AnimalPassport;
 import by.refor.mobilefarm.model.entity.AnimalPassportEntity;
-import by.refor.mobilefarm.model.entity.GeneticGroupEntity;
 import by.refor.mobilefarm.repo.AnimalPassportRepository;
 import by.refor.mobilefarm.repo.FarmRepository;
 import by.refor.mobilefarm.repo.GeneticGroupRepository;
@@ -37,9 +37,8 @@ public class AnimalPassportStorageImpl implements AnimalPassportStorage {
     @Override
     public AnimalPassport getAnimalPassportByExternalId(String id) {
         //TODO: не работает маппинг родителей
-        AnimalPassportEntity ape = animalPassportRepository.findByExternalId(id).get();
+        AnimalPassportEntity ape = animalPassportRepository.findByExternalId(id).orElseThrow(() -> new NotFoundEntityException("animal.passport.not.found", id));
         AnimalPassport ap = animalPassportModelMapper.map(ape, AnimalPassport.class);
-        System.out.println("me");
         return ap;
     }
 
@@ -57,21 +56,22 @@ public class AnimalPassportStorageImpl implements AnimalPassportStorage {
     public AnimalPassport createAnimalPassport(AnimalPassport animalPassport, Long farmId, Long farmOriginalOwnerId,
                                                String fatherExternalId, String motherExternalId, Long geneticGroupId) {
         AnimalPassportEntity ape = animalPassportModelMapper.map(animalPassport, AnimalPassportEntity.class);
-        //TODO: проверка существует ли ферма по данному ид если нет то выбросить ошибку
-        //проверка паспорта по external_id
+        animalPassportRepository.findByExternalId(animalPassport.getExternalId()).ifPresent(s -> {
+            throw new NotFoundEntityException("animal.passport.already.exist", animalPassport.getExternalId());
+        });
         if(Objects.nonNull(farmOriginalOwnerId)){
-            ape.setOriginalOwnerFarm(farmRepository.findById(farmOriginalOwnerId).get());
+            ape.setOriginalOwnerFarm(farmRepository.findById(farmOriginalOwnerId).orElseThrow(() -> new NotFoundEntityException("farm.not.found", farmOriginalOwnerId)));
         }
         if(Objects.nonNull(fatherExternalId)){
-            ape.setFather(animalPassportRepository.findByExternalId(fatherExternalId).get());
+            ape.setFather(animalPassportRepository.findByExternalId(fatherExternalId).orElseThrow(() -> new NotFoundEntityException("animal.passport.not.found", fatherExternalId)));
         }
         if(Objects.nonNull(motherExternalId)){
-            ape.setMother(animalPassportRepository.findByExternalId(motherExternalId).get());
+            ape.setMother(animalPassportRepository.findByExternalId(motherExternalId).orElseThrow(() -> new NotFoundEntityException("animal.passport.not.found", motherExternalId)));
         }
         if(Objects.nonNull(geneticGroupId)){
-            ape.setGeneticGroup(geneticGroupRepository.findById(geneticGroupId).get());
+            ape.setGeneticGroup(geneticGroupRepository.findById(geneticGroupId).orElseThrow(() -> new NotFoundEntityException("genetic.group.not.found", geneticGroupId)));
         }
-        ape.setFarm(farmRepository.findById(farmId).get());
+        ape.setFarm(farmRepository.findById(farmId).orElseThrow(() -> new NotFoundEntityException("farm.not.found", farmId)));
         ape.setCreatedDate(OffsetDateTime.now());
 
         AnimalPassportEntity createdApe = animalPassportRepository.save(ape);
@@ -81,18 +81,18 @@ public class AnimalPassportStorageImpl implements AnimalPassportStorage {
 
     @Override
     public AnimalPassport updateAnimalPassportByExternalId(AnimalPassport animalPassport, String externalId, Long farmId, Long farmOriginalOwnerId, Long geneticGroupId) {
-        AnimalPassportEntity ape = animalPassportRepository.findByExternalId(externalId).get();
+        AnimalPassportEntity ape = animalPassportRepository.findByExternalId(externalId).orElseThrow(() -> new NotFoundEntityException("animal.passport.not.found", externalId));
         AnimalPassportEntity frontAP = animalPassportModelMapper.map(animalPassport, AnimalPassportEntity.class);
         animalPassportModelMapper.map(frontAP, ape);
 
         if (Objects.nonNull(farmId)){
-            ape.setFarm(farmRepository.findById(farmId).get());
+            ape.setFarm(farmRepository.findById(farmId).orElseThrow(() -> new NotFoundEntityException("farm.not.found", farmId)));
         }
         if (Objects.nonNull(farmOriginalOwnerId)){
-            ape.setOriginalOwnerFarm(farmRepository.findById(farmOriginalOwnerId).get());
+            ape.setOriginalOwnerFarm(farmRepository.findById(farmOriginalOwnerId).orElseThrow(() -> new NotFoundEntityException("farm.not.found", farmOriginalOwnerId)));
         }
         if (Objects.nonNull(geneticGroupId)){
-            ape.setGeneticGroup(geneticGroupRepository.findById(geneticGroupId).get());
+            ape.setGeneticGroup(geneticGroupRepository.findById(geneticGroupId).orElseThrow(() -> new NotFoundEntityException("genetic.group.not.found", geneticGroupId)));
         }
 
         AnimalPassportEntity updatedApe = animalPassportRepository.save(ape);
@@ -102,7 +102,7 @@ public class AnimalPassportStorageImpl implements AnimalPassportStorage {
 
     @Override
     public void deleteAnimalPassportById(Long animalPassportId) {
-        AnimalPassportEntity ape = animalPassportRepository.findById(animalPassportId).get();
+        AnimalPassportEntity ape = animalPassportRepository.findById(animalPassportId).orElseThrow(() -> new NotFoundEntityException("animal.passport.id.not.found", animalPassportId));
         animalPassportRepository.delete(ape);
     }
 }

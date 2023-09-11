@@ -11,7 +11,7 @@ public class RationStorageImpl implements RationStorage {
     private final RationRepository rationRepository;
 
     @Autowired
-    public RationStorageImpl(RationRepository rationRepository){
+    public RationStorageImpl(RationRepository rationRepository) {
         this.rationRepository = rationRepository;
     }
     @Override
