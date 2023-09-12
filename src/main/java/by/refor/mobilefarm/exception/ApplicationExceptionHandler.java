@@ -27,6 +27,14 @@ public class ApplicationExceptionHandler {
                 .body(buildExceptionResponseBody(getMessage(e.getMessage()) + e.getIdentificator(), "40401", e.getIdentificator()));
     }
 
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<ExceptionResponseBody> runtimeHandler(RuntimeException e){
+        System.out.println("RuntimeException");
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(buildExceptionResponseBody(e.getMessage(), "50001"));
+    }
+
     private ExceptionResponseBody buildExceptionResponseBody(String errorMessage, String errorCode, Object value){
         return new ExceptionResponseBody(errorMessage, errorCode, value);
     }
