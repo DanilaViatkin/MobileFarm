@@ -2,6 +2,7 @@ package by.refor.mobilefarm.model.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import java.util.List;
 import java.util.Set;
@@ -9,6 +10,7 @@ import java.util.Set;
 @Entity
 @Table(name = "feeds")
 @Data
+@Accessors(chain = true)
 public class FeedEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
