@@ -33,7 +33,6 @@ public class AnimalPassport {
     private OffsetDateTime dryPeriodStartDate;
     private Double weightGrowth;
     private OffsetDateTime birthDate;
-    private OffsetDateTime age;
     private String motherExternalId;
     private String motherNickname;
     private String fatherExternalId;
@@ -64,7 +63,6 @@ public class AnimalPassport {
                 "dryPeriodStartDate = " + dryPeriodStartDate + ", " +
                 "weightGrowth = " + weightGrowth + ", " +
                 "birthDate = " + birthDate + ", " +
-                "age = " + age + ", " +
                 "geneticGroup = " + geneticGroup.getType() + ", " +
                 "motherId = " + motherExternalId + ", " +
                 "motherNickName = " + motherNickname + ", " +
