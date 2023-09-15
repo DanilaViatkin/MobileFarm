@@ -22,10 +22,7 @@ public class GeneticGroup {
     private BigDecimal weight;
     private BigDecimal geneticWeight;
     private Integer age;
+    @JsonProperty(access = JsonProperty.Access.READ_WRITE)
     private Nutrients nutrients;
     private List<Ration> rations;
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    public Nutrients getNutrients(){
-        return nutrients;
-    }
 }

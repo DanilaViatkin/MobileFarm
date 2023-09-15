@@ -7,6 +7,6 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class CalculatedRation {
-    private String NutrientsName;
+    private String parameterName;
     private Nutrients nutrients;
 }
