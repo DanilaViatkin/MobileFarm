@@ -4,6 +4,7 @@ import by.refor.mobilefarm.model.entity.FeedEntity;
 import by.refor.mobilefarm.model.entity.NutrientsEntity;
 import by.refor.mobilefarm.repo.FeedRepository;
 import by.refor.mobilefarm.repo.NutrientsRepository;
+import jakarta.annotation.PostConstruct;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
@@ -30,17 +31,19 @@ public class ExcelExtractor {
         this.nutrientsRepository = nutrientsRepository;
     }
 
-    public static void main(String[] args) throws Exception {
-        initNutrients();
-    }
 
-    public static void initNutrients() throws Exception{
+//    public static void main(String[] args) throws Exception {
+//        initNutrients();
+//        System.out.println("PostConstruct is working!");
+//    }
+    //@PostConstruct
+    public void initNutrients() throws Exception{
         FileInputStream file = new FileInputStream(new File("feeds.xlsx"));
 
-//Create Workbook instance holding reference to .xlsx file
+        //Create Workbook instance holding reference to .xlsx file
         XSSFWorkbook workbook = new XSSFWorkbook(file);
 
-//Get first/desired sheet from the workbook
+        //Get first/desired sheet from the workbook
         XSSFSheet sheet = workbook.getSheetAt(0);
 
         //Iterate through each rows one by one
@@ -71,15 +74,15 @@ public class ExcelExtractor {
                     .setFerrum(BigDecimal.valueOf(row.getCell(19).getNumericCellValue()))
                     .setCopper(BigDecimal.valueOf(row.getCell(20).getNumericCellValue()))
                     .setZins(BigDecimal.valueOf(row.getCell(21).getNumericCellValue()))
-                    .setMagnesium(BigDecimal.valueOf(row.getCell(22).getNumericCellValue()))
+                    .setManganese(BigDecimal.valueOf(row.getCell(22).getNumericCellValue()))
                     .setCobalt(BigDecimal.valueOf(row.getCell(23).getNumericCellValue()))
                     .setIodine(BigDecimal.valueOf(row.getCell(24).getNumericCellValue()))
                     .setCarotene(BigDecimal.valueOf(row.getCell(25).getNumericCellValue()))
                     .setVitaminE(BigDecimal.valueOf(row.getCell(26).getNumericCellValue()))
-                    .setVitaminD(BigDecimal.valueOf(row.getCell(27).getNumericCellValue()))
-                    .setSalt(BigDecimal.valueOf(row.getCell(28).getNumericCellValue()));
-            //nutrientsRepository.save(ne);
+                    .setVitaminD(BigDecimal.valueOf(row.getCell(27).getNumericCellValue()));
+            nutrientsRepository.save(ne);
             fe.setNutrients(ne);
+            feedRepository.save(fe);
             System.out.println(fe);
         }
         file.close();

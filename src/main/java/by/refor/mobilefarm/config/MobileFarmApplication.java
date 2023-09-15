@@ -1,5 +1,7 @@
 package by.refor.mobilefarm.config;
 
+import by.refor.mobilefarm.helper.ExcelExtractor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -10,9 +12,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories("by.refor.mobilefarm.repo")
 @ComponentScan("by.refor.mobilefarm.*")
 public class MobileFarmApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(MobileFarmApplication.class, args);
+
 	}
 
 	@Bean
