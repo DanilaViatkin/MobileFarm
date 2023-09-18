@@ -2,14 +2,18 @@ package by.refor.mobilefarm.model.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Table(name = "genetic_groups")
 @Data
+@Accessors(chain = true)
 public class GeneticGroupEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,6 +42,9 @@ public class GeneticGroupEntity {
     @OneToMany(mappedBy = "geneticGroup", fetch = FetchType.EAGER)
     private List<RationEntity> rations;
 
+    @OneToMany(mappedBy = "geneticGroup", fetch = FetchType.EAGER)
+    private List<AnimalPassportEntity> animalPassports;
+
     @Override
     public String toString(){
         return  "geneticGroupId = " + geneticGroupId + ", " +
@@ -46,6 +53,6 @@ public class GeneticGroupEntity {
                 "weight = " + weight + ", " +
                 "geneticWeight = " + geneticWeight + ", " +
                 "age = " + age + ", " +
-                "rations = " + rations.size();
+                "rations = " + (Objects.isNull(rations) ? 0 : rations.size());
     }
 }
