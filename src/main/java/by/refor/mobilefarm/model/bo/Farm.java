@@ -28,6 +28,11 @@ public class Farm {
 //    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 //    private List<AnimalPassport> animalPassports;
     private Long animalAmount;
+    private Long bullAmount;
+    private Long heiferAmount;
+    private Long cowAmount;
+    private Long dryResistantAmount;
+    private Long netelAmount;
     private Boolean isFormed;
     private String formerName;
 

@@ -90,6 +90,9 @@ public class AnimalPassportEntity {
     @Column(name = "weight_growth")
     private BigDecimal weightGrowth;
 
+    @Column(name = "type")
+    private String type;
+
     @Override
     public String toString(){
         return "animalPassportId = " + animalPassportId + ", " +
@@ -115,6 +118,7 @@ public class AnimalPassportEntity {
                 "lactationStartDate = " + lactationStartDate + ", " +
                 "dryPeriodStartDate = " + dryPeriodStartDate + ", " +
                 "birthDate = " + birthDate + ", " +
-                "weightGrowth = " + weightGrowth;
+                "weightGrowth = " + weightGrowth + ", " +
+                "type = " + type;
     }
 }

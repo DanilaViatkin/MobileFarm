@@ -16,6 +16,10 @@ public class FarmModelMapper extends MobileFarmModelMapper{
     public FarmModelMapper(){
         super.createTypeMap(FarmEntity.class, Farm.class).addMappings(mapping -> {
             mapping.using(FarmEntityAnimalAmount()).map(FarmEntity::getAnimalPassports, Farm::setAnimalAmount);
+            mapping.using(animalPassportBullAmountConverter()).map(FarmEntity::getAnimalPassports, Farm::setBullAmount);
+            mapping.using(animalPassportCowAmountConverter()).map(FarmEntity::getAnimalPassports, Farm::setCowAmount);
+            mapping.using(animalPassportHeiferAmountConverter()).map(FarmEntity::getAnimalPassports, Farm::setHeiferAmount);
+            mapping.using(animalPassportNetelAmountConverter()).map(FarmEntity::getAnimalPassports, Farm::setNetelAmount);
             mapping.using(organizationEntityNameStringConverter()).map(FarmEntity::getOrganization, Farm::setOrganizationName);
         });
     }
@@ -27,4 +31,18 @@ public class FarmModelMapper extends MobileFarmModelMapper{
     private Converter<OrganizationEntity, String> organizationEntityNameStringConverter(){
         return context -> context.getSource().getName();
     }
+
+    public Converter<List<AnimalPassportEntity>, Long> animalPassportBullAmountConverter() {
+        return context -> context.getSource().stream().filter(animalPassport -> animalPassport.getType().equals("Бычок")).count();
+    }
+    public Converter<List<AnimalPassportEntity>, Long> animalPassportCowAmountConverter() {
+        return context -> context.getSource().stream().filter(animalPassport -> animalPassport.getType().equals("Корова")).count();
+    }
+    public Converter<List<AnimalPassportEntity>, Long> animalPassportHeiferAmountConverter() {
+        return context -> context.getSource().stream().filter(animalPassport -> animalPassport.getType().equals("Телочка")).count();
+    }
+    public Converter<List<AnimalPassportEntity>, Long> animalPassportNetelAmountConverter() {
+        return context -> context.getSource().stream().filter(animalPassport -> animalPassport.getType().equals("Нетель")).count();
+    }
+
 }
