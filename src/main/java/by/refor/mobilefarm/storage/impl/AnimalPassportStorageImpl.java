@@ -6,7 +6,7 @@ import by.refor.mobilefarm.model.bo.AnimalPassport;
 import by.refor.mobilefarm.model.entity.AnimalPassportEntity;
 import by.refor.mobilefarm.repo.AnimalPassportRepository;
 import by.refor.mobilefarm.repo.FarmRepository;
-import by.refor.mobilefarm.repo.GeneticGroupRepository;
+import by.refor.mobilefarm.repo.FeedGroupRepository;
 import by.refor.mobilefarm.storage.AnimalPassportStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,17 +21,17 @@ public class AnimalPassportStorageImpl implements AnimalPassportStorage {
     private final AnimalPassportRepository animalPassportRepository;
     private final AnimalPassportModelMapper animalPassportModelMapper;
 
-    private final GeneticGroupRepository geneticGroupRepository;
+    private final FeedGroupRepository feedGroupRepository;
     private final FarmRepository farmRepository;
 
     @Autowired
     public AnimalPassportStorageImpl(AnimalPassportRepository animalPassportRepository,
                                      AnimalPassportModelMapper animalPassportModelMapper,
-                                     GeneticGroupRepository geneticGroupRepository,
+                                     FeedGroupRepository feedGroupRepository,
                                      FarmRepository farmRepository){
         this.animalPassportRepository = animalPassportRepository;
         this.animalPassportModelMapper = animalPassportModelMapper;
-        this.geneticGroupRepository = geneticGroupRepository;
+        this.feedGroupRepository = feedGroupRepository;
         this.farmRepository = farmRepository;
     }
     @Override
@@ -69,7 +69,7 @@ public class AnimalPassportStorageImpl implements AnimalPassportStorage {
             ape.setMother(animalPassportRepository.findByExternalId(motherExternalId).orElseThrow(() -> new NotFoundEntityException("animal.passport.not.found", motherExternalId)));
         }
         if(Objects.nonNull(geneticGroupId)){
-            ape.setGeneticGroup(geneticGroupRepository.findById(geneticGroupId).orElseThrow(() -> new NotFoundEntityException("genetic.group.not.found", geneticGroupId)));
+            ape.setFeedGroup(feedGroupRepository.findById(geneticGroupId).orElseThrow(() -> new NotFoundEntityException("genetic.group.not.found", geneticGroupId)));
         }
         ape.setFarm(farmRepository.findById(farmId).orElseThrow(() -> new NotFoundEntityException("farm.not.found", farmId)));
         ape.setCreatedDate(OffsetDateTime.now());
@@ -92,7 +92,7 @@ public class AnimalPassportStorageImpl implements AnimalPassportStorage {
             ape.setOriginalOwnerFarm(farmRepository.findById(farmOriginalOwnerId).orElseThrow(() -> new NotFoundEntityException("farm.not.found", farmOriginalOwnerId)));
         }
         if (Objects.nonNull(geneticGroupId)){
-            ape.setGeneticGroup(geneticGroupRepository.findById(geneticGroupId).orElseThrow(() -> new NotFoundEntityException("genetic.group.not.found", geneticGroupId)));
+            ape.setFeedGroup(feedGroupRepository.findById(geneticGroupId).orElseThrow(() -> new NotFoundEntityException("genetic.group.not.found", geneticGroupId)));
         }
 
         AnimalPassportEntity updatedApe = animalPassportRepository.save(ape);

@@ -1,35 +1,31 @@
 package by.refor.mobilefarm.service.impl;
 
-import by.refor.mobilefarm.model.bo.Feed;
-import by.refor.mobilefarm.model.bo.GeneticGroup;
+import by.refor.mobilefarm.model.bo.FeedGroup;
 import by.refor.mobilefarm.model.bo.Nutrients;
 import by.refor.mobilefarm.model.bo.Ration;
 import by.refor.mobilefarm.model.dto.CalculatedRation;
-import by.refor.mobilefarm.service.GeneticGroupService;
 import by.refor.mobilefarm.service.RationService;
 import by.refor.mobilefarm.storage.FeedStorage;
-import by.refor.mobilefarm.storage.GeneticGroupStorage;
+import by.refor.mobilefarm.storage.FeedGroupStorage;
 import by.refor.mobilefarm.storage.RationStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class RationServiceImpl implements RationService {
     private final FeedStorage feedStorage;
-    private final GeneticGroupStorage geneticGroupStorage;
+    private final FeedGroupStorage feedGroupStorage;
     private final RationStorage rationStorage;
     @Autowired
     public RationServiceImpl(FeedStorage feedStorage,
-                             GeneticGroupStorage geneticGroupStorage,
+                             FeedGroupStorage feedGroupStorage,
                              RationStorage rationStorage){
         this.feedStorage = feedStorage;
-        this.geneticGroupStorage = geneticGroupStorage;
+        this.feedGroupStorage = feedGroupStorage;
         this.rationStorage = rationStorage;
     }
     @Override
@@ -37,9 +33,9 @@ public class RationServiceImpl implements RationService {
        List<CalculatedRation> calculatedRations = new ArrayList<>();
         ration.getFeeds()
                 .forEach(feed -> calculatedRations.add(new CalculatedRation(feed.getName(), calculateNutrients(feed.getFeedId(), feed.getAmount()))));
-        GeneticGroup geneticGroup = geneticGroupStorage.getGeneticGroupById(geneticGroupId);
+        FeedGroup feedGroup = feedGroupStorage.getFeedGroupById(geneticGroupId);
         calculatedRations.add(new CalculatedRation("Всего", sumTotalRationNutrients(calculatedRations)));
-        calculatedRations.add(new CalculatedRation(geneticGroup.getType(), geneticGroup.getNutrients()));
+        calculatedRations.add(new CalculatedRation(feedGroup.getType(), feedGroup.getNutrients()));
         return calculatedRations;
     }
 

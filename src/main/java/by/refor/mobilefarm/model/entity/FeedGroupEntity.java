@@ -5,20 +5,18 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
-@Table(name = "genetic_groups")
+@Table(name = "feed_groups")
 @Data
 @Accessors(chain = true)
-public class GeneticGroupEntity {
+public class FeedGroupEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "genetic_group_id")
-    private Long geneticGroupId;
+    @Column(name = "feed_group_id")
+    private Long feedGroupId;
 
     @Column(name = "type", nullable = false)
     private String type;
@@ -39,15 +37,15 @@ public class GeneticGroupEntity {
     @JoinColumn(name = "nutrients_rate_id")
     private NutrientsEntity nutrients;
 
-    @OneToMany(mappedBy = "geneticGroup", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "feedGroup", fetch = FetchType.EAGER)
     private List<RationEntity> rations;
 
-    @OneToMany(mappedBy = "geneticGroup", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "feedGroup", fetch = FetchType.EAGER)
     private List<AnimalPassportEntity> animalPassports;
 
     @Override
     public String toString(){
-        return  "geneticGroupId = " + geneticGroupId + ", " +
+        return  "feedGroupId = " + feedGroupId + ", " +
                 "type = " + type + ", " +
                 "productivity = " + productivity + ", " +
                 "weight = " + weight + ", " +

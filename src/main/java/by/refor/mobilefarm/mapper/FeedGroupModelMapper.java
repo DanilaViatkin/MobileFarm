@@ -1,10 +1,10 @@
 package by.refor.mobilefarm.mapper;
 
 import by.refor.mobilefarm.model.bo.Feed;
-import by.refor.mobilefarm.model.bo.GeneticGroup;
+import by.refor.mobilefarm.model.bo.FeedGroup;
 import by.refor.mobilefarm.model.bo.Ration;
 import by.refor.mobilefarm.model.entity.FeedEntity;
-import by.refor.mobilefarm.model.entity.GeneticGroupEntity;
+import by.refor.mobilefarm.model.entity.FeedGroupEntity;
 import by.refor.mobilefarm.model.entity.NutrientsEntity;
 import by.refor.mobilefarm.model.entity.RationEntity;
 import org.modelmapper.Conditions;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class GeneticGroupModelMapper extends MobileFarmModelMapper{
+public class FeedGroupModelMapper extends MobileFarmModelMapper{
     private Converter<List<RationEntity>, List<Ration>> rationEntityListToRationListConverter(){
         return context -> context.getSource()
                 .stream()
@@ -31,13 +31,13 @@ public class GeneticGroupModelMapper extends MobileFarmModelMapper{
                                         .setAmount(rationFeed.getAmount());
                             })
                             .toList());
-                    ration.setGeneticGroup(new GeneticGroup()
-                            .setGeneticGroupId(rationEntity.getGeneticGroup().getGeneticGroupId())
-                            .setGeneticWeight(rationEntity.getGeneticGroup().getGeneticWeight())
-                            .setProductivity(rationEntity.getGeneticGroup().getProductivity())
-                            .setAge(rationEntity.getGeneticGroup().getAge())
-                            .setType(rationEntity.getGeneticGroup().getType())
-                            .setWeight(rationEntity.getGeneticGroup().getWeight()));
+                    ration.setFeedGroup(new FeedGroup()
+                            .setGeneticGroupId(rationEntity.getFeedGroup().getFeedGroupId())
+                            .setGeneticWeight(rationEntity.getFeedGroup().getGeneticWeight())
+                            .setProductivity(rationEntity.getFeedGroup().getProductivity())
+                            .setAge(rationEntity.getFeedGroup().getAge())
+                            .setType(rationEntity.getFeedGroup().getType())
+                            .setWeight(rationEntity.getFeedGroup().getWeight()));
                     return ration;
                 })
                 .toList();
@@ -71,22 +71,22 @@ public class GeneticGroupModelMapper extends MobileFarmModelMapper{
                 .setVitaminE(context.getSource().getVitaminD())
                 .setSalt(context.getSource().getSalt());
     }
-    public GeneticGroupModelMapper() {
-        super.createTypeMap(GeneticGroupEntity.class, GeneticGroup.class).addMappings(mapping -> {
-            mapping.when(Conditions.isNotNull()).using(rationEntityListToRationListConverter()).map(GeneticGroupEntity::getRations, GeneticGroup::setRations);
+    public FeedGroupModelMapper() {
+        super.createTypeMap(FeedGroupEntity.class, FeedGroup.class).addMappings(mapping -> {
+            mapping.when(Conditions.isNotNull()).using(rationEntityListToRationListConverter()).map(FeedGroupEntity::getRations, FeedGroup::setRations);
         });
-        super.createTypeMap(GeneticGroup.class, GeneticGroupEntity.class).addMappings(mapping -> {
-            mapping.skip(GeneticGroupEntity::setRations);
+        super.createTypeMap(FeedGroup.class, FeedGroupEntity.class).addMappings(mapping -> {
+            mapping.skip(FeedGroupEntity::setRations);
         });
-        super.createTypeMap(GeneticGroupEntity.class, GeneticGroupEntity.class).addMappings(mapping -> {
-            mapping.when(Conditions.isNotNull()).map(GeneticGroupEntity::getType, GeneticGroupEntity::setType);
-            mapping.when(Conditions.isNotNull()).map(GeneticGroupEntity::getProductivity, GeneticGroupEntity::setProductivity);
-            mapping.when(Conditions.isNotNull()).map(GeneticGroupEntity::getWeight, GeneticGroupEntity::setWeight);
-            mapping.when(Conditions.isNotNull()).map(GeneticGroupEntity::getGeneticWeight, GeneticGroupEntity::setGeneticWeight);
-            mapping.when(Conditions.isNotNull()).map(GeneticGroupEntity::getAge, GeneticGroupEntity::setAge);
-            mapping.when(Conditions.isNotNull()).map(GeneticGroupEntity::getGeneticGroupId, GeneticGroupEntity::setGeneticGroupId);
-            mapping.when(Conditions.isNotNull()).using(nutrientsEntityNutrientsEntityConverter()).map(GeneticGroupEntity::getNutrients, GeneticGroupEntity::setNutrients);
-            mapping.when(Conditions.isNotNull()).map(GeneticGroupEntity::getRations, GeneticGroupEntity::setRations);
+        super.createTypeMap(FeedGroupEntity.class, FeedGroupEntity.class).addMappings(mapping -> {
+            mapping.when(Conditions.isNotNull()).map(FeedGroupEntity::getType, FeedGroupEntity::setType);
+            mapping.when(Conditions.isNotNull()).map(FeedGroupEntity::getProductivity, FeedGroupEntity::setProductivity);
+            mapping.when(Conditions.isNotNull()).map(FeedGroupEntity::getWeight, FeedGroupEntity::setWeight);
+            mapping.when(Conditions.isNotNull()).map(FeedGroupEntity::getGeneticWeight, FeedGroupEntity::setGeneticWeight);
+            mapping.when(Conditions.isNotNull()).map(FeedGroupEntity::getAge, FeedGroupEntity::setAge);
+            mapping.when(Conditions.isNotNull()).map(FeedGroupEntity::getFeedGroupId, FeedGroupEntity::setFeedGroupId);
+            mapping.when(Conditions.isNotNull()).using(nutrientsEntityNutrientsEntityConverter()).map(FeedGroupEntity::getNutrients, FeedGroupEntity::setNutrients);
+            mapping.when(Conditions.isNotNull()).map(FeedGroupEntity::getRations, FeedGroupEntity::setRations);
 
         });
     }

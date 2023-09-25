@@ -1,6 +1,5 @@
 package by.refor.mobilefarm.model.bo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -39,7 +38,7 @@ public class AnimalPassport {
     private String fatherNickname;
     private Farm farm;
     private Farm originalOwnerFarm;
-    private GeneticGroup geneticGroup;
+    private FeedGroup feedGroup;
 
     @Override
     public String toString(){
@@ -63,7 +62,7 @@ public class AnimalPassport {
                 "dryPeriodStartDate = " + dryPeriodStartDate + ", " +
                 "weightGrowth = " + weightGrowth + ", " +
                 "birthDate = " + birthDate + ", " +
-                "geneticGroup = " + geneticGroup.getType() + ", " +
+                "geneticGroup = " + feedGroup.getType() + ", " +
                 "motherId = " + motherExternalId + ", " +
                 "motherNickName = " + motherNickname + ", " +
                 "fatherId = " + fatherExternalId + ", " +

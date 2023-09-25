@@ -33,8 +33,8 @@ public class AnimalPassportEntity {
     private AnimalPassportEntity mother;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "genetic_group_id")
-    private GeneticGroupEntity geneticGroup;
+    @JoinColumn(name = "feed_group_id")
+    private FeedGroupEntity feedGroup;
 
     @Column(name = "created_date", nullable = false)
     private OffsetDateTime createdDate;
@@ -100,7 +100,7 @@ public class AnimalPassportEntity {
                 "originalOwnerFarm = " + originalOwnerFarm.getName() + ", " +
                 "father = " + father.getNickname() + ", " +
                 "mother = " + mother.getNickname() + ", " +
-                "geneticGroup = " + geneticGroup.getType() + ", " +
+                "geneticGroup = " + feedGroup.getType() + ", " +
                 "createdDate = " + createdDate + ", " +
                 "externalId = " + externalId + ", " +
                 "nickname = " + nickname + ", " +

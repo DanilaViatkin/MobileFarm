@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "rations")
@@ -15,8 +14,8 @@ public class RationEntity {
     private Long rationId;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "genetic_group_id", nullable = false)
-    private GeneticGroupEntity geneticGroup;
+    @JoinColumn(name = "feed_group_id", nullable = false)
+    private FeedGroupEntity feedGroup;
 
     @OneToMany(mappedBy = "ration")
     private List<RationFeeds> rationFeeds;
@@ -24,7 +23,7 @@ public class RationEntity {
     @Override
     public String toString(){
         return  "rationId = " + rationId + ", " +
-                "geneticGroup = " + geneticGroup + ", " +
+                "geneticGroup = " + feedGroup + ", " +
                 "rationFeeds = " + rationFeeds;
     }
 }

@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -14,6 +13,6 @@ import java.util.Set;
 public class Ration {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long rationId;
-    private GeneticGroup geneticGroup;
+    private FeedGroup feedGroup;
     private List<Feed> feeds;
 }

@@ -1,26 +1,5 @@
 package by.refor.mobilefarm.helper;
 
-import by.refor.mobilefarm.model.entity.FeedEntity;
-import by.refor.mobilefarm.model.entity.GeneticGroupEntity;
-import by.refor.mobilefarm.model.entity.NutrientsEntity;
-import by.refor.mobilefarm.repo.FeedRepository;
-import by.refor.mobilefarm.repo.GeneticGroupRepository;
-import by.refor.mobilefarm.repo.NutrientsRepository;
-import jakarta.annotation.PostConstruct;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.springframework.stereotype.Component;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileReader;
-import java.math.BigDecimal;
-import java.util.Iterator;
-
 //@Component
 public class ExcelExtractor {
 
