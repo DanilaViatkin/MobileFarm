@@ -7,6 +7,7 @@ import java.util.List;
 public interface FeedStorage {
     List<Feed> getAll();
     Feed getFeedById(Long id);
+    Feed createFeed(Feed feed);
 
     void deleteFeedById(Long feedId);
 

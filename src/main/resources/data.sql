@@ -1849,3 +1849,10 @@ values  (true, 1, '2017-12-07 12:07:09.000000', 2, 1, 2, '2016-05-11 00:00:00.00
         (true, 4, '2016-05-18 19:27:30.000000', 5, 1, 2, '2016-05-18 00:00:00.000000', 'gvolga2007', '4818001111054', 'МФТ "Мезеново"'),
         (true, 5, '2016-05-18 19:28:52.000000', 6, 1, 2, '2016-05-18 00:00:00.000000', 'gvolga2007', '4818001111061', 'Ферма "Лисуны"'),
         (true, 6, '2020-11-30 09:10:33.000000', 7, 1, 2, '2020-11-30 09:09:29.000000', 'Alena', '4818001111078', 'Молочно-товарный комплекс "Устенский"');
+
+update mobilefarm.locations_seq set next_val = 8;
+update mobilefarm.owners_seq set next_val = 3 where next_val = 1;
+update mobilefarm.organizations_seq set next_val = 2 where next_val = 1;
+update mobilefarm.farms_seq set next_val = 7 where next_val = 1;
+update mobilefarm.feeds_seq set next_val = 782 where next_val = 1;
+update mobilefarm.nutrients_seq set next_val = 962 where next_val = 1;
