@@ -4,6 +4,7 @@ import by.refor.mobilefarm.repo.RationRepository;
 import by.refor.mobilefarm.storage.RationStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
 public class RationStorageImpl implements RationStorage {
@@ -15,6 +16,7 @@ public class RationStorageImpl implements RationStorage {
         this.rationRepository = rationRepository;
     }
     @Override
+    @Transactional
     public void deleteRationById(Long rationId) {
         rationRepository.delete(rationRepository.findById(rationId).get());
     }

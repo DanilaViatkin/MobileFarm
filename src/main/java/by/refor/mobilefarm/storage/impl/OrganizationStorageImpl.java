@@ -17,6 +17,7 @@ import by.refor.mobilefarm.repo.OwnerRepository;
 import by.refor.mobilefarm.storage.OrganizationStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
 public class OrganizationStorageImpl implements OrganizationStorage {
@@ -57,6 +58,7 @@ public class OrganizationStorageImpl implements OrganizationStorage {
     }
 
     @Override
+    @Transactional
     public Organization createOrganization(Organization organization) {
         OrganizationEntity oe = organizationModelMapper.map(organization, OrganizationEntity.class);
         oe.setOwner(ownerRepository.save(oe.getOwner()));
@@ -65,6 +67,7 @@ public class OrganizationStorageImpl implements OrganizationStorage {
     }
 
     @Override
+    @Transactional
     public void deleteOrganizationById(Long organizationId) {
         organizationRepository.delete(organizationRepository.findById(organizationId).get());
     }

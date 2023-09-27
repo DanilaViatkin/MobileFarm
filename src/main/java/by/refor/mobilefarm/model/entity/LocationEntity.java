@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class LocationEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long locationId;
 
     @Column(name = "location_index", nullable = false)

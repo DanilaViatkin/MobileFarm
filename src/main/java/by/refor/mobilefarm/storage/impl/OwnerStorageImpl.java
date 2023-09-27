@@ -7,6 +7,7 @@ import by.refor.mobilefarm.repo.OwnerRepository;
 import by.refor.mobilefarm.storage.OwnerStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
 public class OwnerStorageImpl implements OwnerStorage {
@@ -20,11 +21,13 @@ public class OwnerStorageImpl implements OwnerStorage {
         this.ownerModelMapper = ownerModelMapper;
     }
     @Override
+    @Transactional
     public Owner createOwner(Owner owner) {
         return ownerModelMapper.map(ownerRepository.save(ownerModelMapper.map(owner, OwnerEntity.class)), Owner.class);
     }
 
     @Override
+    @Transactional
     public void deleteOwner(Long ownerId) {
         OwnerEntity oe = ownerRepository.findById(ownerId).get();
         ownerRepository.delete(oe);

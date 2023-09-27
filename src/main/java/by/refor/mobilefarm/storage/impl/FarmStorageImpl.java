@@ -11,6 +11,7 @@ import by.refor.mobilefarm.repo.OwnerRepository;
 import by.refor.mobilefarm.storage.FarmStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
@@ -51,6 +52,7 @@ public class FarmStorageImpl implements FarmStorage {
     }
 
     @Override
+    @Transactional
     public Farm createFarm(Farm farm, Long organizationId) {
         FarmEntity fe = farmModelMapper.map(farm, FarmEntity.class);
         fe.setLocation(locationRepository.save(fe.getLocation()));
@@ -60,6 +62,7 @@ public class FarmStorageImpl implements FarmStorage {
     }
 
     @Override
+    @Transactional
     public Farm updateFarmById(Farm farm, String gln, Long organizationId, Long ownerId) {
         FarmEntity fe = farmRepository.findByGln(gln).orElseThrow(() -> new NotFoundEntityException("farm.gln.not.found", gln));
         farmModelMapper.map(farm, fe);
@@ -73,6 +76,7 @@ public class FarmStorageImpl implements FarmStorage {
     }
 
     @Override
+    @Transactional
     public void deleteFarmById(Long farmId) {
         FarmEntity fe = farmRepository.findById(farmId).get();
         farmRepository.delete(fe);

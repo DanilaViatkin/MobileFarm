@@ -14,7 +14,7 @@ import java.util.Objects;
 @Accessors(chain = true)
 public class FeedGroupEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "feed_group_id")
     private Long feedGroupId;
 

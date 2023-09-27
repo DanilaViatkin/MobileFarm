@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 public class RationEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long rationId;
 
     @ManyToOne(fetch = FetchType.EAGER)

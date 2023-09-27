@@ -10,6 +10,7 @@ import by.refor.mobilefarm.repo.FeedGroupRepository;
 import by.refor.mobilefarm.storage.AnimalPassportStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -53,6 +54,7 @@ public class AnimalPassportStorageImpl implements AnimalPassportStorage {
     }
 
     @Override
+    @Transactional
     public AnimalPassport createAnimalPassport(AnimalPassport animalPassport, Long farmId, Long farmOriginalOwnerId,
                                                String fatherExternalId, String motherExternalId, Long geneticGroupId) {
         AnimalPassportEntity ape = animalPassportModelMapper.map(animalPassport, AnimalPassportEntity.class);
@@ -80,6 +82,7 @@ public class AnimalPassportStorageImpl implements AnimalPassportStorage {
     }
 
     @Override
+    @Transactional
     public AnimalPassport updateAnimalPassportByExternalId(AnimalPassport animalPassport, String externalId, Long farmId, Long farmOriginalOwnerId, Long geneticGroupId) {
         AnimalPassportEntity ape = animalPassportRepository.findByExternalId(externalId).orElseThrow(() -> new NotFoundEntityException("animal.passport.not.found", externalId));
         AnimalPassportEntity frontAP = animalPassportModelMapper.map(animalPassport, AnimalPassportEntity.class);
@@ -101,6 +104,7 @@ public class AnimalPassportStorageImpl implements AnimalPassportStorage {
     }
 
     @Override
+    @Transactional
     public void deleteAnimalPassportById(Long animalPassportId) {
         AnimalPassportEntity ape = animalPassportRepository.findById(animalPassportId).orElseThrow(() -> new NotFoundEntityException("animal.passport.id.not.found", animalPassportId));
         animalPassportRepository.delete(ape);

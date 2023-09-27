@@ -54,6 +54,7 @@ public class FeedStorageImpl implements FeedStorage {
     }
 
     @Override
+    @Transactional
     public void deleteFeedById(Long feedId) {
         feedRepository.delete(feedRepository.findById(feedId).get());
     }

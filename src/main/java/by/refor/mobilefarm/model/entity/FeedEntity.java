@@ -13,7 +13,7 @@ import java.util.Set;
 @Accessors(chain = true)
 public class FeedEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long feedId;
 
     @OneToMany(mappedBy = "feed")

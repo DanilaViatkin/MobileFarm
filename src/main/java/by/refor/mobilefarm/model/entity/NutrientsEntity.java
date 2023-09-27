@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @Accessors(chain = true)
 public class NutrientsEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long nutrientsId;
 
     @Column(name = "feed_unit")

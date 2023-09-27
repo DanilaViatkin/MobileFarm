@@ -8,6 +8,7 @@ import by.refor.mobilefarm.storage.LocationStorage;
 import lombok.experimental.Accessors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
 public class LocationStorageImpl implements LocationStorage {
@@ -22,11 +23,13 @@ public class LocationStorageImpl implements LocationStorage {
         this.locationModelMapper = locationModelMapper;
     }
     @Override
+    @Transactional
     public Location createLocation(Location location) {
         return locationModelMapper.map(locationRepository.save(locationModelMapper.map(location, LocationEntity.class)), Location.class);
     }
 
     @Override
+    @Transactional
     public void deleteLocationById(Long locationId) {
         locationRepository.delete(locationRepository.findById(locationId).get());
     }

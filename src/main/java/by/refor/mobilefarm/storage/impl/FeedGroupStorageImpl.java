@@ -7,6 +7,7 @@ import by.refor.mobilefarm.repo.FeedGroupRepository;
 import by.refor.mobilefarm.storage.FeedGroupStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -39,6 +40,7 @@ public class FeedGroupStorageImpl implements FeedGroupStorage {
     }
 
     @Override
+    @Transactional
     public FeedGroup createFeedGroup(FeedGroup feedGroup) {
         FeedGroupEntity gge = feedGroupModelMapper.map(feedGroup, FeedGroupEntity.class);
         gge = FeedGroupRepository
@@ -48,6 +50,7 @@ public class FeedGroupStorageImpl implements FeedGroupStorage {
     }
 
     @Override
+    @Transactional
     public FeedGroup updateFeedGroupById(Long id, FeedGroup feedGroup) {
         FeedGroupEntity gge = FeedGroupRepository.findById(id).get();
         FeedGroupEntity frontGroup = feedGroupModelMapper.map(feedGroup, FeedGroupEntity.class);
@@ -63,6 +66,7 @@ public class FeedGroupStorageImpl implements FeedGroupStorage {
     }
 
     @Override
+    @Transactional
     public void deleteFeedGroupById(Long FeedGroupId) {
         FeedGroupRepository.delete(FeedGroupRepository.findById(FeedGroupId).get());
     }
