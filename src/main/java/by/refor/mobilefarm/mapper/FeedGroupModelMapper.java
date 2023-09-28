@@ -32,7 +32,7 @@ public class FeedGroupModelMapper extends MobileFarmModelMapper{
                             })
                             .toList());
                     ration.setFeedGroup(new FeedGroup()
-                            .setGeneticGroupId(rationEntity.getFeedGroup().getFeedGroupId())
+                            .setFeedGroupId(rationEntity.getFeedGroup().getFeedGroupId())
                             .setGeneticWeight(rationEntity.getFeedGroup().getGeneticWeight())
                             .setProductivity(rationEntity.getFeedGroup().getProductivity())
                             .setAge(rationEntity.getFeedGroup().getAge())
