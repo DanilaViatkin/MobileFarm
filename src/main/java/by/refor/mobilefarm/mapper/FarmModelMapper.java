@@ -33,16 +33,16 @@ public class FarmModelMapper extends MobileFarmModelMapper{
     }
 
     public Converter<List<AnimalPassportEntity>, Long> animalPassportBullAmountConverter() {
-        return context -> context.getSource().stream().filter(animalPassport -> animalPassport.getType().equals("Бычок")).count();
+        return context -> Objects.nonNull(context.getSource()) ? context.getSource().stream().filter(animalPassport -> animalPassport.getType().equals("Бычок")).count() : 0;
     }
     public Converter<List<AnimalPassportEntity>, Long> animalPassportCowAmountConverter() {
-        return context -> context.getSource().stream().filter(animalPassport -> animalPassport.getType().equals("Корова")).count();
+        return context -> Objects.nonNull(context.getSource()) ? context.getSource().stream().filter(animalPassport -> animalPassport.getType().equals("Корова")).count() : 0;
     }
     public Converter<List<AnimalPassportEntity>, Long> animalPassportHeiferAmountConverter() {
-        return context -> context.getSource().stream().filter(animalPassport -> animalPassport.getType().equals("Телочка")).count();
+        return context -> Objects.nonNull(context.getSource()) ? context.getSource().stream().filter(animalPassport -> animalPassport.getType().equals("Телочка")).count() : 0;
     }
     public Converter<List<AnimalPassportEntity>, Long> animalPassportNetelAmountConverter() {
-        return context -> context.getSource().stream().filter(animalPassport -> animalPassport.getType().equals("Нетель")).count();
+        return context -> Objects.nonNull(context.getSource()) ? context.getSource().stream().filter(animalPassport -> animalPassport.getType().equals("Нетель")).count() : 0;
     }
 
 }
