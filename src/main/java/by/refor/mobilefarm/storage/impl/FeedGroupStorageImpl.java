@@ -6,6 +6,7 @@ import by.refor.mobilefarm.model.entity.FeedGroupEntity;
 import by.refor.mobilefarm.repo.FeedGroupRepository;
 import by.refor.mobilefarm.storage.FeedGroupStorage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,15 +24,17 @@ public class FeedGroupStorageImpl implements FeedGroupStorage {
         this.feedGroupModelMapper = feedGroupModelMapper;
     }
     @Override
-    public FeedGroup getFeedGroupByParams(String type, Integer age, BigDecimal productivity, BigDecimal weight, BigDecimal geneticWeight){
-        FeedGroupEntity feedGroupEntity = FeedGroupRepository
-                .findByTypeAndProductivityAndWeightAndGeneticWeightAndAge(type,
-                        productivity,
-                        weight,
-                        geneticWeight,
-                        age);
+    public List<FeedGroup> getFeedGroupByParams(String type, Integer age, BigDecimal productivity, BigDecimal weight, BigDecimal geneticWeight){
+        FeedGroupEntity fge = new FeedGroupEntity()
+                .setType(type)
+                .setAge(age)
+                .setProductivity(productivity)
+                .setWeight(weight)
+                .setGeneticWeight(geneticWeight);
+        List<FeedGroupEntity> feedGroupEntities = FeedGroupRepository
+                .findAll(Example.of(fge));
 
-        return feedGroupModelMapper.map(feedGroupEntity, FeedGroup.class);
+        return feedGroupModelMapper.mapList(feedGroupEntities, FeedGroup.class);
     }
 
     @Override

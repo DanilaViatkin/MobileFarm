@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public interface FeedGroupService {
-    FeedGroup getFeedGroupByParams(String type, Integer age, BigDecimal productivity, BigDecimal weight, BigDecimal geneticWeight);
+    List<FeedGroup> getFeedGroupByParams(String type, Integer age, BigDecimal productivity, BigDecimal weight, BigDecimal geneticWeight);
     FeedGroup getFeedGroupById(Long feedGroupId);
     List<FeedGroup> getAllFeedGroups();
     FeedGroup createFeedGroup(FeedGroup feedGroup);

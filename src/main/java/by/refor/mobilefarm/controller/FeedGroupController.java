@@ -29,7 +29,7 @@ public class FeedGroupController {
 
     @GetMapping(value = "/byparams")
     @ResponseStatus(HttpStatus.OK)
-    public FeedGroup getFeedGroupByParams(@PathParam("type") @Nullable String type,
+    public List<FeedGroup> getFeedGroupByParams(@PathParam("type") @Nullable String type,
                                           @PathParam("age") @Nullable Integer age,
                                           @PathParam("productivity") @Nullable BigDecimal productivity,
                                           @PathParam("weight") @Nullable BigDecimal weight,

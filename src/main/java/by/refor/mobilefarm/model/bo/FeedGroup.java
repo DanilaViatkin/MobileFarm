@@ -15,7 +15,7 @@ import java.util.List;
 @Accessors(chain = true)
 public class FeedGroup {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private Long geneticGroupId;
+    private Long feedGroupId;
     private String type;
     private BigDecimal productivity;
     private BigDecimal weight;
