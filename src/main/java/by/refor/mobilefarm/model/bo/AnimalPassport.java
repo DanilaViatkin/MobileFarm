@@ -40,6 +40,12 @@ public class AnimalPassport {
     private Farm originalOwnerFarm;
     private FeedGroup feedGroup;
 
+    private String originCountry;
+    private String externalIdInOriginCountry;
+    private Boolean formed;
+    private OffsetDateTime formingDate;
+    private String  formerName;
+
     @Override
     public String toString(){
         return  "animalPassportId = " + animalPassportId + ", " +
@@ -67,6 +73,10 @@ public class AnimalPassport {
                 "motherNickName = " + motherNickname + ", " +
                 "fatherId = " + fatherExternalId + ", " +
                 "fatherName = " + fatherNickname + ", " +
+                "originCountry = " + originCountry + ", " +
+                "externalIdInOriginCountry = " + externalIdInOriginCountry + ", " +
+                "formingDate = " +formingDate + ", " +
+                "formerName = " +formerName + ", " +
                 "farm = " + farm.getName();
 
     }

@@ -93,6 +93,20 @@ public class AnimalPassportEntity {
     @Column(name = "type")
     private String type;
 
+    @Column(name = "originCountry")
+    private String originCountry;
+
+    @Column(name = "externalIdInOriginCountry")
+    private String externalIdInOriginCountry;
+
+    @Column(name = "formed")
+    private Boolean formed;
+
+    @Column(name = "formingDate")
+    private OffsetDateTime formingDate;
+
+    @Column(name = "formerName")
+    private String formerName;
     @Override
     public String toString(){
         return "animalPassportId = " + animalPassportId + ", " +
@@ -119,6 +133,11 @@ public class AnimalPassportEntity {
                 "dryPeriodStartDate = " + dryPeriodStartDate + ", " +
                 "birthDate = " + birthDate + ", " +
                 "weightGrowth = " + weightGrowth + ", " +
-                "type = " + type;
+                "type = " + type +
+                "originCountry = " + originCountry + ", " +
+                "externalIdInOriginCountry = " + externalIdInOriginCountry + ", " +
+                "formingDate = " +formingDate + ", " +
+                "formerName = " +formerName  ;
+
     }
 }

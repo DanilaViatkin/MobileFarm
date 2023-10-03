@@ -18,7 +18,7 @@ services:
     environment:
       MYSQL_DATABASE: mobilefarm
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_PASSWORD: root
+      MYSQL_PASSWORD: 12345
     networks:
       - blablabla
 
