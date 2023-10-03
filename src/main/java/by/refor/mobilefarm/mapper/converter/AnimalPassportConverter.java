@@ -74,6 +74,23 @@ public class AnimalPassportConverter implements EntityConvertor<AnimalPassportEn
         if (Objects.nonNull(dto.getBirthDate())){
             entity.setBirthDate(dto.getBirthDate());
         }
+
+        if (Objects.nonNull(dto.getOriginCountry())){
+            entity.setOriginCountry(dto.getOriginCountry());
+        }
+        if (Objects.nonNull(dto.getExternalIdInOriginCountry())){
+            entity.setExternalIdInOriginCountry(dto.getExternalIdInOriginCountry());
+        }
+        if (Objects.nonNull(dto.getFormed())){
+            entity.setFormed(dto.getFormed());
+        }
+        if (Objects.nonNull(dto.getFormingDate())){
+            entity.setFormingDate(dto.getFormingDate());
+        }
+        if (Objects.nonNull(dto.getFormerName())){
+            entity.setFormerName(dto.getFormerName());
+        }
+
         return entity;
     }
 }

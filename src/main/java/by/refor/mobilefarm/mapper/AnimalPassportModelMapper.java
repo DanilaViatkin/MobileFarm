@@ -65,6 +65,11 @@ public class AnimalPassportModelMapper extends MobileFarmModelMapper{
            mapping.map(AnimalPassportEntity::getDryPeriodStartDate, AnimalPassport::setLactationStartDate);
            mapping.map(AnimalPassportEntity::getWeightGrowth, AnimalPassport::setWeightGrowth);
            mapping.map(AnimalPassportEntity::getBirthDate, AnimalPassport::setBirthDate);
+            mapping.map(AnimalPassportEntity::getOriginCountry, AnimalPassport::setOriginCountry);
+            mapping.map(AnimalPassportEntity::getExternalIdInOriginCountry, AnimalPassport::setExternalIdInOriginCountry);
+            mapping.map(AnimalPassportEntity::getFormed, AnimalPassport::setFormed);
+            mapping.map(AnimalPassportEntity::getFormingDate, AnimalPassport::setFormingDate);
+            mapping.map(AnimalPassportEntity::getFormerName, AnimalPassport::setFormerName);
            mapping.when(Conditions.isNotNull()).using(motherExternalIdConverter()).map(AnimalPassportEntity::getMother, AnimalPassport::setMotherExternalId);
            mapping.when(Conditions.isNotNull()).using(fatherExternalIdConverter()).map(AnimalPassportEntity::getFather, AnimalPassport::setFatherExternalId);
            mapping.when(Conditions.isNotNull()).using(motherNicknameConverter()).map(AnimalPassportEntity::getMother, AnimalPassport::setMotherNickname);
@@ -92,7 +97,15 @@ public class AnimalPassportModelMapper extends MobileFarmModelMapper{
            mapping.when(Conditions.isNotNull()).map(AnimalPassportEntity::getDryPeriodStartDate, AnimalPassportEntity::setLactationStartDate);
            mapping.when(Conditions.isNotNull()).map(AnimalPassportEntity::getWeightGrowth, AnimalPassportEntity::setWeightGrowth);
            mapping.when(Conditions.isNotNull()).map(AnimalPassportEntity::getBirthDate, AnimalPassportEntity::setBirthDate);
-           mapping.skip(AnimalPassportEntity::setMother);
+
+            mapping.when(Conditions.isNotNull()).map(AnimalPassportEntity::getOriginCountry, AnimalPassportEntity::setOriginCountry);
+            mapping.when(Conditions.isNotNull()).map(AnimalPassportEntity::getExternalIdInOriginCountry, AnimalPassportEntity::setExternalIdInOriginCountry);
+            mapping.when(Conditions.isNotNull()).map(AnimalPassportEntity::getFormed, AnimalPassportEntity::setFormed);
+            mapping.when(Conditions.isNotNull()).map(AnimalPassportEntity::getFormingDate, AnimalPassportEntity::setFormingDate);
+            mapping.when(Conditions.isNotNull()).map(AnimalPassportEntity::getFormerName, AnimalPassportEntity::setFormerName);
+
+
+            mapping.skip(AnimalPassportEntity::setMother);
            mapping.skip(AnimalPassportEntity::setFather);
            mapping.skip(AnimalPassportEntity::setFarm);
            mapping.skip(AnimalPassportEntity::setOriginalOwnerFarm);
