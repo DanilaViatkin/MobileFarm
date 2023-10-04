@@ -247,7 +247,12 @@ CREATE TABLE IF NOT EXISTS `mobilefarm`.`animal_passports` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
+ALTER TABLE `mobilefarm`.`animal_passports`
+add originCountry NVARCHAR(255) Null,
+add externalIdInOriginCountry NVARCHAR(255) Null,
+add formed Boolean Null,
+add formingDate TIMESTAMP(1) Null,
+add formerName NVARCHAR(255) Null;
 -- -----------------------------------------------------
 -- Table `mobilefarm`.`rations`
 -- -----------------------------------------------------
