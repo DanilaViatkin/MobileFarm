@@ -18,9 +18,14 @@ public class FeedGroup {
     private Long feedGroupId;
     private String type;
     private BigDecimal productivity;
+    private BigDecimal geneticProductivity;
     private BigDecimal weight;
     private BigDecimal geneticWeight;
-    private Integer age;
+    private Integer ageFrom;
+    private Integer ageTo;
+    private Integer lactationFrom;
+    private Integer lactationTo;
+    private Integer averageDailyGain;
     @JsonProperty(access = JsonProperty.Access.READ_WRITE)
     private Nutrients nutrients;
     private List<Ration> rations;

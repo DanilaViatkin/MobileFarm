@@ -21,8 +21,11 @@ public class FeedGroupEntity {
     @Column(name = "type", nullable = false)
     private String type;
 
-    @Column(name = "productivity")
-    private BigDecimal productivity;
+    @Column(name = "lactation_from")
+    private Integer lactationFrom;
+
+    @Column(name = "lactation_to")
+    private Integer lactationTo;
 
     @Column(name = "weight")
     private BigDecimal weight;
@@ -30,8 +33,20 @@ public class FeedGroupEntity {
     @Column(name = "genetic_weight")
     private BigDecimal geneticWeight;
 
-    @Column(name = "age")
-    private Integer age;
+    @Column(name = "productivity")
+    private BigDecimal productivity;
+
+    @Column(name = "genetic_productivity")
+    private BigDecimal geneticProductivity;
+
+    @Column(name = "age_from")
+    private Integer ageFrom;
+
+    @Column(name = "age_to")
+    private Integer ageTo;
+
+    @Column(name = "average_daily_gain")
+    private Integer averageDailyGain;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "nutrients_rate_id")
@@ -48,9 +63,14 @@ public class FeedGroupEntity {
         return  "feedGroupId = " + feedGroupId + ", " +
                 "type = " + type + ", " +
                 "productivity = " + productivity + ", " +
+                "geneticProductivity = " + geneticProductivity + ", " +
                 "weight = " + weight + ", " +
                 "geneticWeight = " + geneticWeight + ", " +
-                "age = " + age + ", " +
+                "ageFrom = " + ageFrom + ", " +
+                "ageTo = " + ageTo + ", " +
+                "lactationFrom = " + lactationFrom + ", " +
+                "lactationTo = " + lactationTo + ", " +
+                "averageDailyGain = " + averageDailyGain + ", " +
                 "rations = " + (Objects.isNull(rations) ? 0 : rations.size());
     }
 }

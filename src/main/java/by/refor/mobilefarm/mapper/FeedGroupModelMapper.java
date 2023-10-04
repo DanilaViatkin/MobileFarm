@@ -35,9 +35,14 @@ public class FeedGroupModelMapper extends MobileFarmModelMapper{
                             .setFeedGroupId(rationEntity.getFeedGroup().getFeedGroupId())
                             .setGeneticWeight(rationEntity.getFeedGroup().getGeneticWeight())
                             .setProductivity(rationEntity.getFeedGroup().getProductivity())
-                            .setAge(rationEntity.getFeedGroup().getAge())
+                            .setGeneticProductivity(rationEntity.getFeedGroup().getGeneticProductivity())
+                            .setAgeTo(rationEntity.getFeedGroup().getAgeTo())
+                            .setAgeFrom(rationEntity.getFeedGroup().getAgeFrom())
+                            .setLactationTo(rationEntity.getFeedGroup().getLactationTo())
+                            .setLactationFrom(rationEntity.getFeedGroup().getLactationFrom())
                             .setType(rationEntity.getFeedGroup().getType())
-                            .setWeight(rationEntity.getFeedGroup().getWeight()));
+                            .setWeight(rationEntity.getFeedGroup().getWeight())
+                            .setAverageDailyGain(rationEntity.getFeedGroup().getAverageDailyGain()));
                     return ration;
                 })
                 .toList();
@@ -81,9 +86,14 @@ public class FeedGroupModelMapper extends MobileFarmModelMapper{
         super.createTypeMap(FeedGroupEntity.class, FeedGroupEntity.class).addMappings(mapping -> {
             mapping.when(Conditions.isNotNull()).map(FeedGroupEntity::getType, FeedGroupEntity::setType);
             mapping.when(Conditions.isNotNull()).map(FeedGroupEntity::getProductivity, FeedGroupEntity::setProductivity);
+            mapping.when(Conditions.isNotNull()).map(FeedGroupEntity::getGeneticProductivity, FeedGroupEntity::setGeneticProductivity);
             mapping.when(Conditions.isNotNull()).map(FeedGroupEntity::getWeight, FeedGroupEntity::setWeight);
             mapping.when(Conditions.isNotNull()).map(FeedGroupEntity::getGeneticWeight, FeedGroupEntity::setGeneticWeight);
-            mapping.when(Conditions.isNotNull()).map(FeedGroupEntity::getAge, FeedGroupEntity::setAge);
+            mapping.when(Conditions.isNotNull()).map(FeedGroupEntity::getAgeTo, FeedGroupEntity::setAgeTo);
+            mapping.when(Conditions.isNotNull()).map(FeedGroupEntity::getAgeFrom, FeedGroupEntity::setAgeFrom);
+            mapping.when(Conditions.isNotNull()).map(FeedGroupEntity::getLactationFrom, FeedGroupEntity::setLactationFrom);
+            mapping.when(Conditions.isNotNull()).map(FeedGroupEntity::getLactationTo, FeedGroupEntity::setLactationTo);
+            mapping.when(Conditions.isNotNull()).map(FeedGroupEntity::getAverageDailyGain, FeedGroupEntity::setAverageDailyGain);
             mapping.when(Conditions.isNotNull()).map(FeedGroupEntity::getFeedGroupId, FeedGroupEntity::setFeedGroupId);
             mapping.when(Conditions.isNotNull()).using(nutrientsEntityNutrientsEntityConverter()).map(FeedGroupEntity::getNutrients, FeedGroupEntity::setNutrients);
             mapping.when(Conditions.isNotNull()).map(FeedGroupEntity::getRations, FeedGroupEntity::setRations);

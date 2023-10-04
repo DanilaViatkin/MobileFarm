@@ -27,7 +27,7 @@ public class FeedGroupStorageImpl implements FeedGroupStorage {
     public List<FeedGroup> getFeedGroupByParams(String type, Integer age, BigDecimal productivity, BigDecimal weight, BigDecimal geneticWeight){
         FeedGroupEntity fge = new FeedGroupEntity()
                 .setType(type)
-                .setAge(age)
+                .setAgeTo(age)
                 .setProductivity(productivity)
                 .setWeight(weight)
                 .setGeneticWeight(geneticWeight);
