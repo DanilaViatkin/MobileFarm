@@ -62,7 +62,8 @@ public class AnimalPassportModelMapper extends MobileFarmModelMapper{
            mapping.map(AnimalPassportEntity::getTreatmentEndDate, AnimalPassport::setTreatmentEndDate);
            mapping.map(AnimalPassportEntity::getInseminationDate, AnimalPassport::setInseminationDate);
            mapping.map(AnimalPassportEntity::getLactationStartDate, AnimalPassport::setLactationStartDate);
-           mapping.map(AnimalPassportEntity::getDryPeriodStartDate, AnimalPassport::setLactationStartDate);
+           mapping.map(AnimalPassportEntity::getLactationEndDate, AnimalPassport::setLactationEndDate);
+           mapping.map(AnimalPassportEntity::getDryPeriodStartDate, AnimalPassport::setDryPeriodStartDate);
            mapping.map(AnimalPassportEntity::getWeightGrowth, AnimalPassport::setWeightGrowth);
            mapping.map(AnimalPassportEntity::getBirthDate, AnimalPassport::setBirthDate);
             mapping.map(AnimalPassportEntity::getOriginCountry, AnimalPassport::setOriginCountry);
@@ -94,7 +95,8 @@ public class AnimalPassportModelMapper extends MobileFarmModelMapper{
            mapping.when(Conditions.isNotNull()).map(AnimalPassportEntity::getTreatmentEndDate, AnimalPassportEntity::setTreatmentEndDate);
            mapping.when(Conditions.isNotNull()).map(AnimalPassportEntity::getInseminationDate, AnimalPassportEntity::setInseminationDate);
            mapping.when(Conditions.isNotNull()).map(AnimalPassportEntity::getLactationStartDate, AnimalPassportEntity::setLactationStartDate);
-           mapping.when(Conditions.isNotNull()).map(AnimalPassportEntity::getDryPeriodStartDate, AnimalPassportEntity::setLactationStartDate);
+           mapping.when(Conditions.isNotNull()).map(AnimalPassportEntity::getLactationEndDate, AnimalPassportEntity::setLactationEndDate);
+           mapping.when(Conditions.isNotNull()).map(AnimalPassportEntity::getDryPeriodStartDate, AnimalPassportEntity::setDryPeriodStartDate);
            mapping.when(Conditions.isNotNull()).map(AnimalPassportEntity::getWeightGrowth, AnimalPassportEntity::setWeightGrowth);
            mapping.when(Conditions.isNotNull()).map(AnimalPassportEntity::getBirthDate, AnimalPassportEntity::setBirthDate);
 

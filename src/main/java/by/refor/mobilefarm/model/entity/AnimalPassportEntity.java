@@ -81,6 +81,9 @@ public class AnimalPassportEntity {
     @Column(name = "lactation_start_date")
     private OffsetDateTime lactationStartDate;
 
+    @Column(name = "lactation_end_date")
+    private OffsetDateTime lactationEndDate;
+
     @Column(name = "dry_period_start_date")
     private OffsetDateTime dryPeriodStartDate;
 

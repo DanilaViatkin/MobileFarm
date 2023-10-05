@@ -29,6 +29,7 @@ public class AnimalPassport {
     private OffsetDateTime treatmentEndDate;
     private OffsetDateTime inseminationDate;
     private OffsetDateTime lactationStartDate;
+    private OffsetDateTime lactationEndDate;
     private OffsetDateTime dryPeriodStartDate;
     private Double weightGrowth;
     private OffsetDateTime birthDate;
