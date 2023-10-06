@@ -19,10 +19,8 @@ public class FeedModelMapper extends MobileFarmModelMapper{
 
     private Converter<Nutrients, NutrientsEntity> nutrientsNutrientsEntityConverter(){
         return context -> {
-            System.out.println("context.getDestination(): " + context.getDestination());
             if (Objects.nonNull(context.getDestination())){
                 nutrientsModelMapper.map(context.getSource(), context.getDestination());
-                System.out.println("context.getDestination() after: " + context.getDestination());
                 return context.getDestination();
             }
             return nutrientsModelMapper.map(context.getSource(), NutrientsEntity.class);
