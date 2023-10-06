@@ -1,5 +1,6 @@
 package by.refor.mobilefarm.storage.impl;
 
+import by.refor.mobilefarm.exception.custom.NotFoundEntityException;
 import by.refor.mobilefarm.mapper.FeedModelMapper;
 import by.refor.mobilefarm.mapper.NutrientsModelMapper;
 import by.refor.mobilefarm.model.bo.Feed;
@@ -45,6 +46,16 @@ public class FeedStorageImpl implements FeedStorage {
         FeedEntity fe = feedModelMapper.map(feed, FeedEntity.class);
         fe.setNutrients(ne);
         return feedModelMapper.map(feedRepository.save(fe), Feed.class);
+    }
+
+    @Override
+    @Transactional
+    public Feed updateFeedById(Long feedId, Feed feed) {
+        FeedEntity fe = feedRepository.findById(feedId).orElseThrow(() -> new NotFoundEntityException("feed.not.found", feedId));
+        nutrientsModelMapper.map(feed.getNutrients(), fe.getNutrients());
+        feedModelMapper.map(feed, fe);
+        feedRepository.save(fe);
+        return feedModelMapper.map(fe, Feed.class);
     }
 
     @Override

@@ -31,6 +31,11 @@ public class FeedController {
     public Feed createFeed(@RequestBody Feed feed){
         return feedService.createFeed(feed);
     }
+    @PatchMapping("/{feedId}")
+    public Feed updateFeedById(@PathVariable Long feedId,
+                               @RequestBody Feed feed){
+        return feedService.updateFeedById(feedId, feed);
+    }
 
     @DeleteMapping("/{feedId}")
     @ResponseStatus(HttpStatus.OK)

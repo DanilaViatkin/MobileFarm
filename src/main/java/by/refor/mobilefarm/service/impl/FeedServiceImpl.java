@@ -30,6 +30,11 @@ public class FeedServiceImpl implements FeedService {
     }
 
     @Override
+    public Feed updateFeedById(Long feedId, Feed feed) {
+        return feedStorage.updateFeedById(feedId, feed);
+    }
+
+    @Override
     public void deleteFeedById(Long feedId) {
         feedStorage.deleteFeedById(feedId);
     }

@@ -8,4 +8,6 @@ public interface FeedService {
     List<Feed> getAll();
     Feed createFeed(Feed feed);
     void deleteFeedById(Long feedId);
+
+    Feed updateFeedById(Long feedId, Feed feed);
 }
