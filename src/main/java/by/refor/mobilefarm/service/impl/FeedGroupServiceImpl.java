@@ -20,8 +20,8 @@ public class FeedGroupServiceImpl implements FeedGroupService {
     }
 
     @Override
-    public List<FeedGroup> getFeedGroupByParams(String type, Integer age, BigDecimal productivity, BigDecimal weight, BigDecimal geneticWeight){
-        return FeedGroupStorage.getFeedGroupByParams(type, age, productivity, weight, geneticWeight);
+    public List<FeedGroup> getFeedGroupByParams(String type, Integer age, BigDecimal productivity, BigDecimal weight, BigDecimal geneticWeight, String name){
+        return FeedGroupStorage.getFeedGroupByParams(type, age, productivity, weight, geneticWeight, name);
     }
 
     @Override

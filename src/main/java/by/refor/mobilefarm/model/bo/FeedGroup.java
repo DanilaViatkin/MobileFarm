@@ -26,6 +26,7 @@ public class FeedGroup {
     private Integer lactationFrom;
     private Integer lactationTo;
     private Integer averageDailyGain;
+    private String name;
     @JsonProperty(access = JsonProperty.Access.READ_WRITE)
     private Nutrients nutrients;
     private List<Ration> rations;

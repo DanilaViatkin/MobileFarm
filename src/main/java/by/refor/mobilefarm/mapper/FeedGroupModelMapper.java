@@ -42,7 +42,8 @@ public class FeedGroupModelMapper extends MobileFarmModelMapper{
                             .setLactationFrom(rationEntity.getFeedGroup().getLactationFrom())
                             .setType(rationEntity.getFeedGroup().getType())
                             .setWeight(rationEntity.getFeedGroup().getWeight())
-                            .setAverageDailyGain(rationEntity.getFeedGroup().getAverageDailyGain()));
+                            .setAverageDailyGain(rationEntity.getFeedGroup().getAverageDailyGain())
+                            .setName(rationEntity.getFeedGroup().getName()));
                     return ration;
                 })
                 .toList();
@@ -97,6 +98,7 @@ public class FeedGroupModelMapper extends MobileFarmModelMapper{
             mapping.when(Conditions.isNotNull()).map(FeedGroupEntity::getFeedGroupId, FeedGroupEntity::setFeedGroupId);
             mapping.when(Conditions.isNotNull()).using(nutrientsEntityNutrientsEntityConverter()).map(FeedGroupEntity::getNutrients, FeedGroupEntity::setNutrients);
             mapping.when(Conditions.isNotNull()).map(FeedGroupEntity::getRations, FeedGroupEntity::setRations);
+            mapping.when(Conditions.isNotNull()).map(FeedGroupEntity::getName, FeedGroupEntity::setName);
 
         });
     }

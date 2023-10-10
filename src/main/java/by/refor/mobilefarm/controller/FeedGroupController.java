@@ -33,8 +33,9 @@ public class FeedGroupController {
                                           @PathParam("age") @Nullable Integer age,
                                           @PathParam("productivity") @Nullable BigDecimal productivity,
                                           @PathParam("weight") @Nullable BigDecimal weight,
-                                          @PathParam("geneticWeight") @Nullable BigDecimal geneticWeight){
-        return feedGroupService.getFeedGroupByParams(type, age, productivity, weight, geneticWeight);
+                                          @PathParam("geneticWeight") @Nullable BigDecimal geneticWeight,
+                                          @PathParam("name") @Nullable String name){
+        return feedGroupService.getFeedGroupByParams(type, age, productivity, weight, geneticWeight, name);
     }
 
     @GetMapping

@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public interface FeedGroupStorage {
-    List<FeedGroup> getFeedGroupByParams(String type, Integer age, BigDecimal productivity, BigDecimal weight, BigDecimal geneticWeight);
+    List<FeedGroup> getFeedGroupByParams(String type, Integer age, BigDecimal productivity, BigDecimal weight, BigDecimal geneticWeight, String name);
     List<FeedGroup> getAllFeedGroups();
     FeedGroup createFeedGroup(FeedGroup feedGroup);
     FeedGroup updateFeedGroupById(Long id, FeedGroup feedGroup);

@@ -48,6 +48,9 @@ public class FeedGroupEntity {
     @Column(name = "average_daily_gain")
     private Integer averageDailyGain;
 
+    @Column(name = "name")
+    private String name;
+
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "nutrients_rate_id")
     private NutrientsEntity nutrients;
