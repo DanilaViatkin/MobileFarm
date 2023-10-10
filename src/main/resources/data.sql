@@ -1840,7 +1840,7 @@ values  (1, '54.435432;30.381196', '-', 'Оршанский', 'gbuste@mail.ru', 
         (7, '-', '-', 'Оршанский', 'gbuste@mail.ru', '80216272442', '-', '14', '211003', 'Устенский с/с', '80216272442', 'Витебская', '-');
 
 insert into mobilefarm.owners (owner_id, first_name, last_name, middle_name)
-values  (1, 'Батюков', 'Дмитрий', 'Александрович'),
+values  (1, 'Дмитрий', 'Батюков', 'Александрович'),
         (2, '-', '-', '-');
 
 insert into mobilefarm.organizations (created_date, location_id, organization_id, owner_id, registration_date, bank_code, egr, gln, name, okpo, payment_account, short_name, unp)
