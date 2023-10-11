@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface RationService {
+   Ration createRation(Ration ration, Long feedGroupId);
    List<CalculatedRation> calculateRation(Ration ration, Long geneticGroupId);
    void deleteRationById(Long rationId);
 }

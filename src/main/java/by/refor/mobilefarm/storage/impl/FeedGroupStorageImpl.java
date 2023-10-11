@@ -24,13 +24,14 @@ public class FeedGroupStorageImpl implements FeedGroupStorage {
         this.feedGroupModelMapper = feedGroupModelMapper;
     }
     @Override
-    public List<FeedGroup> getFeedGroupByParams(String type, Integer age, BigDecimal productivity, BigDecimal weight, BigDecimal geneticWeight){
+    public List<FeedGroup> getFeedGroupByParams(String type, Integer age, BigDecimal productivity, BigDecimal weight, BigDecimal geneticWeight, String name){
         FeedGroupEntity fge = new FeedGroupEntity()
                 .setType(type)
                 .setAgeTo(age)
                 .setProductivity(productivity)
                 .setWeight(weight)
-                .setGeneticWeight(geneticWeight);
+                .setGeneticWeight(geneticWeight)
+                .setName(name);
         List<FeedGroupEntity> feedGroupEntities = FeedGroupRepository
                 .findAll(Example.of(fge));
 

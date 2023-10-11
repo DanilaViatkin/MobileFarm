@@ -28,6 +28,12 @@ public class RationServiceImpl implements RationService {
         this.feedGroupStorage = feedGroupStorage;
         this.rationStorage = rationStorage;
     }
+
+    @Override
+    public Ration createRation(Ration ration, Long feedGroupId) {
+        return rationStorage.createRation(ration, feedGroupId);
+    }
+
     @Override
     public List<CalculatedRation> calculateRation(Ration ration, Long geneticGroupId) {
        List<CalculatedRation> calculatedRations = new ArrayList<>();

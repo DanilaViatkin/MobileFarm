@@ -4,6 +4,7 @@ import by.refor.mobilefarm.model.bo.Nutrients;
 import by.refor.mobilefarm.model.bo.Ration;
 import by.refor.mobilefarm.model.dto.CalculatedRation;
 import by.refor.mobilefarm.service.RationService;
+import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,12 @@ public class RationController {
     @Autowired
     public RationController(RationService rationService){
         this.rationService = rationService;
+    }
+
+    @PostMapping
+    public Ration createRation(@RequestBody Ration ration,
+                               @PathParam("feedGroupId") Long feedGroupId){
+        return rationService.createRation(ration, feedGroupId);
     }
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
