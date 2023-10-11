@@ -48,4 +48,9 @@ public class FeedGroupServiceImpl implements FeedGroupService {
     public void deleteFeedGroupById(Long FeedGroupId) {
         FeedGroupStorage.deleteFeedGroupById(FeedGroupId);
     }
+    @Override
+    public List<FeedGroup> getFeedGroupByOrganization(String organizationName)
+    {
+        return FeedGroupStorage.getFeedGroupByOrganization(organizationName);
+    };
 }

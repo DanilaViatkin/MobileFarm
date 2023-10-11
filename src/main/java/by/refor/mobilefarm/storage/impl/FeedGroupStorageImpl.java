@@ -1,8 +1,10 @@
 package by.refor.mobilefarm.storage.impl;
 
 import by.refor.mobilefarm.mapper.FeedGroupModelMapper;
+import by.refor.mobilefarm.model.bo.AnimalPassport;
 import by.refor.mobilefarm.model.bo.FeedGroup;
 import by.refor.mobilefarm.model.entity.FeedGroupEntity;
+import by.refor.mobilefarm.repo.AnimalPassportRepository;
 import by.refor.mobilefarm.repo.FeedGroupRepository;
 import by.refor.mobilefarm.storage.FeedGroupStorage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,4 +75,16 @@ public class FeedGroupStorageImpl implements FeedGroupStorage {
     public void deleteFeedGroupById(Long FeedGroupId) {
         FeedGroupRepository.delete(FeedGroupRepository.findById(FeedGroupId).get());
     }
+    @Override
+   public List<FeedGroup> getFeedGroupByOrganization(String organizationName){
+
+        List<FeedGroupEntity> fge = FeedGroupRepository.findByOrganizationName(organizationName);
+        //mapList(FeedGroupRepository.findAll(), FeedGroup.class)
+//        FeedGroupEntity frontGroup = feedGroupModelMapper.map(feedGroup, FeedGroupEntity.class);
+//        feedGroupModelMapper.map(frontGroup, fge);
+//        fge = FeedGroupRepository.save(fge)
+
+        return feedGroupModelMapper.mapList(fge, FeedGroup.class);
+    }
+
 }

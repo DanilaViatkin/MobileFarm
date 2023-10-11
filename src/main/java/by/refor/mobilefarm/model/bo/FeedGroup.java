@@ -24,5 +24,6 @@ public class FeedGroup {
     @JsonProperty(access = JsonProperty.Access.READ_WRITE)
     private Nutrients nutrients;
     private List<Ration> rations;
+    private List<Farm> farm;
     private List<AnimalPassport> animalPassports;
 }

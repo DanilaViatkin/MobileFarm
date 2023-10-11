@@ -14,4 +14,6 @@ public interface FeedGroupService {
     FeedGroup createFeedGroup(FeedGroup feedGroup);
     FeedGroup updateFeedGroupById(Long id, FeedGroup feedGroup);
     void deleteFeedGroupById(Long FeedGroupId);
+
+    List<FeedGroup> getFeedGroupByOrganization(String organizationName);
 }

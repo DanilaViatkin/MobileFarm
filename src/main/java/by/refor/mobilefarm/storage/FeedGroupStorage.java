@@ -13,4 +13,5 @@ public interface FeedGroupStorage {
     FeedGroup getFeedGroupById(Long FeedGroupId);
     void deleteFeedGroupById(Long FeedGroupId);
 
+    List<FeedGroup> getFeedGroupByOrganization(String organizationName);
 }

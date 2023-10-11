@@ -1,6 +1,7 @@
 package by.refor.mobilefarm.model.bo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
