@@ -45,6 +45,9 @@ public class FeedGroupEntity {
     @Column(name = "age_to")
     private Integer ageTo;
 
+    @Column(name = "name")
+    private String name;
+
     @Column(name = "average_daily_gain")
     private Integer averageDailyGain;
 
