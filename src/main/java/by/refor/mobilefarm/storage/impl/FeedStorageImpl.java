@@ -58,4 +58,11 @@ public class FeedStorageImpl implements FeedStorage {
     public void deleteFeedById(Long feedId) {
         feedRepository.delete(feedRepository.findById(feedId).get());
     }
+
+    public List<Feed> findByOrganizationName(String organization) {
+
+        List<FeedEntity> feeds = feedRepository.findByOrganizationName(organization);
+
+        return feedModelMapper.mapList(feeds, Feed.class);
+    }
 }

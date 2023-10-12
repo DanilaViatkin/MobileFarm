@@ -1,6 +1,7 @@
 package by.refor.mobilefarm.service.impl;
 
 import by.refor.mobilefarm.model.bo.Feed;
+import by.refor.mobilefarm.model.bo.FeedGroup;
 import by.refor.mobilefarm.service.FeedService;
 import by.refor.mobilefarm.storage.FeedStorage;
 import by.refor.mobilefarm.storage.impl.FeedStorageImpl;
@@ -33,4 +34,10 @@ public class FeedServiceImpl implements FeedService {
     public void deleteFeedById(Long feedId) {
         feedStorage.deleteFeedById(feedId);
     }
+
+    @Override
+    public List<Feed> findByOrganizationName(String organizationName)
+    {
+        return feedStorage.findByOrganizationName(organizationName);
+    };
 }

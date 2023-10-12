@@ -11,4 +11,5 @@ public interface FeedStorage {
 
     void deleteFeedById(Long feedId);
 
+    List<Feed> findByOrganizationName(String organization);
 }
