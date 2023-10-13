@@ -112,4 +112,9 @@ public class RationServiceImpl implements RationService {
     {
         return rationStorage.findByOrganizationName(organizationName);
     };
+
+    @Override
+    public List<Ration> getAll() {
+        return rationStorage.getAll();
+    }
 }

@@ -31,4 +31,9 @@ public class RationController {
     public void deleteRationById(@PathVariable Long rationId){
         rationService.deleteRationById(rationId);
     }
+
+    @GetMapping
+    public List<Ration> getAll(){
+        return rationService.getAll();
+    }
 }

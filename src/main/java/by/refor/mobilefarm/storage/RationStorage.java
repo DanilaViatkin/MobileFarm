@@ -7,4 +7,6 @@ import java.util.List;
 public interface RationStorage {
     void deleteRationById(Long rationId);
     List<Integer> findByOrganizationName(String organization);
+
+    List<Ration> getAll();
 }

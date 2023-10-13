@@ -12,4 +12,6 @@ public interface RationService {
    List<CalculatedRation> calculateRation(Ration ration, Long geneticGroupId);
    void deleteRationById(Long rationId);
    List<Integer> findByOrganizationName(String organization);
+
+   List <Ration> getAll();
 }
