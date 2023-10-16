@@ -113,4 +113,14 @@ public class RationServiceImpl implements RationService {
                         });
         return feedNutrients;
     }
+    @Override
+    public List<Ration> findByOrganizationName(String organizationName)
+    {
+        return rationStorage.findByOrganizationName(organizationName);
+    };
+
+    @Override
+    public List<Ration> getAll() {
+        return rationStorage.getAll();
+    }
 }

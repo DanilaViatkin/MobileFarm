@@ -11,4 +11,6 @@ public interface FeedStorage {
     Feed updateFeedById(Long feedId, Feed feed);
     void deleteFeedById(Long feedId);
 
+    List<Feed> findByOrganizationName(String organization);
+
 }

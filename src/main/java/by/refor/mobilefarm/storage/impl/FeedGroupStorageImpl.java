@@ -74,4 +74,11 @@ public class FeedGroupStorageImpl implements FeedGroupStorage {
     public void deleteFeedGroupById(Long FeedGroupId) {
         FeedGroupRepository.delete(FeedGroupRepository.findById(FeedGroupId).get());
     }
+    @Override
+    public List<FeedGroup> getFeedGroupByOrganization(String organizationName){
+
+        List<FeedGroupEntity> fge = FeedGroupRepository.findByOrganizationName(organizationName);
+
+        return feedGroupModelMapper.mapList(fge, FeedGroup.class);
+    }
 }
