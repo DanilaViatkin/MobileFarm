@@ -10,4 +10,6 @@ public interface FeedService {
     void deleteFeedById(Long feedId);
 
     Feed updateFeedById(Long feedId, Feed feed);
+
+    List<Feed> findByOrganizationName(String organization);
 }

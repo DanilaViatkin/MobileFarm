@@ -1,5 +1,6 @@
 package by.refor.mobilefarm.controller;
 
+import by.refor.mobilefarm.model.bo.Feed;
 import by.refor.mobilefarm.model.bo.Nutrients;
 import by.refor.mobilefarm.model.bo.Ration;
 import by.refor.mobilefarm.model.dto.CalculatedRation;
@@ -26,7 +27,7 @@ public class RationController {
                                @PathParam("feedGroupId") Long feedGroupId){
         return rationService.createRation(ration, feedGroupId);
     }
-    @GetMapping
+    @GetMapping("/calculate")
     @ResponseStatus(HttpStatus.OK)
     public List<CalculatedRation> calculateRation(@RequestBody Ration ration,
                                                   @RequestParam("genetic_group_id") Long geneticGroupId){
@@ -37,5 +38,10 @@ public class RationController {
     @ResponseStatus(HttpStatus.OK)
     public void deleteRationById(@PathVariable Long rationId){
         rationService.deleteRationById(rationId);
+    }
+
+    @GetMapping
+    public List<Ration> getAll(){
+        return rationService.getAll();
     }
 }

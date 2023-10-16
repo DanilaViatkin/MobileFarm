@@ -2,6 +2,7 @@ package by.refor.mobilefarm.service.impl;
 
 import by.refor.mobilefarm.mapper.FeedGroupModelMapper;
 import by.refor.mobilefarm.model.bo.FeedGroup;
+import by.refor.mobilefarm.model.bo.Ration;
 import by.refor.mobilefarm.service.FeedGroupService;
 import by.refor.mobilefarm.storage.FeedGroupStorage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,4 +49,9 @@ public class FeedGroupServiceImpl implements FeedGroupService {
     public void deleteFeedGroupById(Long FeedGroupId) {
         FeedGroupStorage.deleteFeedGroupById(FeedGroupId);
     }
+
+    @Override
+    public List<FeedGroup> getFeedGroupByOrganization(String organizationName){
+        return FeedGroupStorage.getFeedGroupByOrganization(organizationName);
+    };
 }
