@@ -39,7 +39,6 @@ public class AnimalPassport {
     private String fatherNickname;
     private Farm farm;
     private Farm originalOwnerFarm;
-    private FeedGroup feedGroup;
 
     private String originCountry;
     private String externalIdInOriginCountry;
@@ -69,7 +68,6 @@ public class AnimalPassport {
                 "dryPeriodStartDate = " + dryPeriodStartDate + ", " +
                 "weightGrowth = " + weightGrowth + ", " +
                 "birthDate = " + birthDate + ", " +
-                "geneticGroup = " + feedGroup.getType() + ", " +
                 "motherId = " + motherExternalId + ", " +
                 "motherNickName = " + motherNickname + ", " +
                 "fatherId = " + fatherExternalId + ", " +
