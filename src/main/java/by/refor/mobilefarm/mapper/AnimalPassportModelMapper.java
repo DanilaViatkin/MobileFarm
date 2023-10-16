@@ -76,7 +76,7 @@ public class AnimalPassportModelMapper extends MobileFarmModelMapper{
            mapping.when(Conditions.isNotNull()).using(motherNicknameConverter()).map(AnimalPassportEntity::getMother, AnimalPassport::setMotherNickname);
            mapping.when(Conditions.isNotNull()).using(fatherNicknameConverter()).map(AnimalPassportEntity::getFather, AnimalPassport::setFatherNickname);
            mapping.when(Conditions.isNotNull()).using(farmEntityFarmConverter()).map(AnimalPassportEntity::getFarm, AnimalPassport::setFarm);
-           //mapping.when(Conditions.isNotNull()).using(FeedGroupEntityFeedGroupConverter()).map(AnimalPassportEntity::getFeedGroup, AnimalPassport::setFeedGroup);
+           mapping.when(Conditions.isNotNull()).using(FeedGroupEntityFeedGroupConverter()).map(AnimalPassportEntity::getFeedGroup, AnimalPassport::setFeedGroup);
         });
 
         super.createTypeMap(AnimalPassportEntity.class, AnimalPassportEntity.class).addMappings(mapping -> {
