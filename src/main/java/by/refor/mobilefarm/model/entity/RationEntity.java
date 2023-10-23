@@ -1,7 +1,5 @@
 package by.refor.mobilefarm.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -10,7 +8,6 @@ import java.util.List;
 @Entity
 @Table(name = "rations")
 @Data
-@JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class RationEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

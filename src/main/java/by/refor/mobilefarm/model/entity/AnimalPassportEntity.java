@@ -1,19 +1,16 @@
 package by.refor.mobilefarm.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "animal_passports")
 @Data
 @Accessors(chain = true)
-@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class AnimalPassportEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
