@@ -12,7 +12,8 @@ import java.util.Objects;
 @Table(name = "feed_groups")
 @Data
 @Accessors(chain = true)
-public class FeedGroupEntity {
+
+public class FeedGroupEntity  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "feed_group_id")
