@@ -32,8 +32,8 @@ public class RationController {
         rationService.deleteRationById(rationId);
     }
 
-    @GetMapping
-    public List<Ration> getAll(){
-        return rationService.getAll();
-    }
+//    @GetMapping
+//    public List<Ration> getAll(){
+//        return rationService.getAll();
+//    }
 }
